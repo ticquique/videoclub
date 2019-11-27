@@ -16,8 +16,6 @@ services:
     volumes:
       - ./frontend/config/default.conf.dev:/etc/nginx/conf.d/default.conf
       - ./frontend/config/nginx.conf:/etc/nginx/nginx.conf
-    ports:
-      - ${FRONTEND_PORT:-9080}:80
     depends_on:
       - node_angular
     environment:
@@ -36,3 +34,6 @@ services:
       - NODE_ENV=${PRODUCTION:-false}
     ports:
       - ${BACKEND_PORT:-8080}:3000
+    volumes:
+      - /usr/app/node_modules
+      - ./backend:/usr/app

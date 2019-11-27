@@ -8,7 +8,7 @@ RUN if [ "$USER_GID" != "1000" ]; then groupmod node --gid $USER_GID; fi \
 
 WORKDIR /usr/app
 
-COPY package.json .
-RUN npm install --quiet
+COPY package*.json ./
+RUN npm install --quiet --no-optional && npm cache clean --force
 
 COPY . .

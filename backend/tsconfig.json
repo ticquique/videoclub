@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "target": "esnext",
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true,
+        "paths": {
+            "@app/*": ["./*"],
+            "@interfaces/*": ["interfaces/*"],
+            "@loaders/*": ["loaders/*"],
+            "@utils/*": ["utils/*"],
+            "@models/*": ["models/*"],
+            "@middleware/*": ["middleware/*"],
+            "@env": ["env"],
+        },
+    }
+}

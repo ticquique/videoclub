@@ -9,6 +9,8 @@ services:
       - TZ=UTC
       - PRODUCTION=${PRODUCTION:-true}
       - APP_DOMAIN=${APP_DOMAIN:-videoclub.webynav.com}
+    ports:
+      - ${FRONTEND_PORT:-9080}:80
   
   mongo:
     image: mongo
@@ -35,6 +37,3 @@ services:
       - MONGO_DATABASE=${MONGO_DATABASE:-videoclub}
       - APP_DOMAIN=${APP_DOMAIN:-videoclub.webynav.com}
       - NODE_ENV=${PRODUCTION:-true}
-    volumes:
-      - /usr/app/node_modules
-      - ./backend:/usr/app
