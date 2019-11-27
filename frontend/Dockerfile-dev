@@ -19,7 +19,11 @@ RUN if [ "$USER_GID" != "1000" ]; then groupmod node --gid $USER_GID; fi \
 
 WORKDIR /usr/src/app
 COPY ./videoclub/package*.json ./
-RUN npm install
+
+RUN chown -R node:node .
+USER node
+
+RUN npm install --quiet
 
 COPY ./videoclub .
 CMD npm run start
