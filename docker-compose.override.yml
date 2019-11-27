@@ -39,3 +39,7 @@ services:
       - PRODUCTION=${PRODUCTION:-false}
       - APP_DOMAIN=${APP_DOMAIN:-localhost}
       - NODE_ENV=${PRODUCTION:-false}
+    ports:
+      - ${BACKEND_PORT:-8080}:3000
+    volumes:
+      - ./backend:/usr/app
