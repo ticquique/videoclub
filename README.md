@@ -97,7 +97,7 @@ fechas necesarias para que las introduzca el usuario manualmente.
 
 ## Team
 
-| <a href="https://github.com/ATalaveraDev" target="_blank">**Alejandro1994-afk**</a> | <a href="https://github.com/ticquique" target="_blank">**Ticquique**</a> |
+| <a href="https://github.com/ATalaveraDev" target="_blank">**ATalaveraDev**</a> | <a href="https://github.com/ticquique" target="_blank">**Ticquique**</a> |
 | :---: |:---:|
 | [![Angel Talavera](https://github.com/ATalaveraDev.png?size=200)](https://github.com/ATalaveraDev)    | [![Ticquique](https://github.com/ticquique.png?size=200)](https://github.com/ticquique) |
 | <a href="https://github.com/ATalaveraDev" target="_blank">`github.com/ATalaveraDev`</a> | <a href="https://github.com/ticquique" target="_blank">`github.com/ticquique`</a> |
