@@ -1,0 +1,26 @@
+map $sent_http_content_type $expires {
+    default                    off;
+    text/html                  epoch; #means no cache, as it is not a static page
+    text/css                   max;
+    application/javascript     max;
+    application/woff2          max;
+    ~image/                    30d;
+}
+
+server {
+    listen  80 default_server;
+    server_name  localhost;
+    # access_log  /var/log/localhost/nginx.access.log;
+    # error_log   /var/log/localhost/nginx.error.log;
+    root   /var/www/html;
+    index index.html;
+    expires $expires;
+
+    location / {
+        proxy_pass http://node_angular:4200;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Host $host;
+    }
+
+}

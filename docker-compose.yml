@@ -1,0 +1,36 @@
+version: "3.6"
+services:
+  angular:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - TZ=UTC
+      - PRODUCTION=${PRODUCTION:-true}
+      - APP_DOMAIN=${APP_DOMAIN:-videoclub.webynav.com}
+  
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-admin}
+      - MONGO_DATABASE=${MONGO_DATABASE:-videoclub}
+      - PRODUCTION=${PRODUCTION:-true}
+
+  processor:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: npm run prod
+    depends_on:
+      - mongo
+    environment:
+      - TZ=UTC
+      - PRODUCTION=${PRODUCTION:-true}
+      - MONGO_USER=${MONGO_USER:-admin}
+      - MONGO_PASSWORD=${MONGO_PASSWORD:-admin}
+      - MONGO_DATABASE=${MONGO_DATABASE:-videoclub}
+      - APP_DOMAIN=${APP_DOMAIN:-videoclub.webynav.com}
+      - NODE_ENV=${PRODUCTION:-true}

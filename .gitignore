@@ -1,0 +1,8 @@
+.history*
+node_modules
+db
+.env
+data.json
+package-lock.json
+mongo_dump_*
+.vscode
