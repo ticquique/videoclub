@@ -3,13 +3,13 @@ LABEL maintainer="ticquique@gmail.com"
 
 WORKDIR /usr/src/app
 COPY ./videoclub/package*.json ./
-RUN chown -R node:node .
-USER node
 
 RUN npm install --quiet
 
 COPY ./videoclub .
 RUN npm run build
+
+RUN chown -Rh node:node .
 
 FROM nginx
 USER root

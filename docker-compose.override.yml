@@ -29,20 +29,10 @@ services:
       - ./db:/data/db
   
   processor:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      args:
-        USER_UID: ${USER_UID:-1000}
     command: npm run dev
-    depends_on:
-      - mongo
     environment:
       - PRODUCTION=${PRODUCTION:-false}
       - APP_DOMAIN=${APP_DOMAIN:-localhost}
       - NODE_ENV=${PRODUCTION:-false}
     ports:
       - ${BACKEND_PORT:-8080}:3000
-    volumes:
-      - /usr/app/node_modules
-      - ./backend:/usr/app
