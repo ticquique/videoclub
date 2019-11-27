@@ -88,6 +88,7 @@ clase película, que tienen el mismo nombre pero distinto código.
 Cuando un socio se registra en el videoclub, debe proporcionar todos sus datos
 personales. Esto le da derecho a alquilar películas en cualquier videoclub de la cadena
 (no sólo en el que se haya registrado).
+
 > Cuando un socio alquila películas, se debe registrar en el sistema la fecha en la cual
 se ha llevado las películas y la fecha cuando las debe devolver. En un alquiler puede
 haber más de una película incluida. Todas las películas que forman parte de un
@@ -95,6 +96,7 @@ alquiler tendrán la misma fecha de recogida y de devolución. La fecha de devol
 se puede editar y modificar, pero sólo se puede poner una fecha posterior a la actual.
 El precio del alquiler se calcula como un derivado, sumando los precios de las
 películas que componen el alquiler.
+
 > Se desea mantener un estudio estadístico para ver lo que se gasta en la cadena de
 videoclubs cada uno de los socios. Para ello, una vez al mes, el administrador
 introduce el socio para el que desea calcular las estadísticas y el mes. Con estos
