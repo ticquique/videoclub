@@ -12,8 +12,4 @@ export default class IRoute {
     
     routes: GraphQLFieldConfigMap<any, any, any>;
 
-    constructor(routes: GraphQLFieldConfigMap<any, any, any>) { 
-        this.routes = routes;
-    }
 }
-

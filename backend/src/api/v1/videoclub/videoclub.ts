@@ -6,23 +6,31 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfigMap } from "graphql";
-import { UserType } from "./typedef";
+import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
+import { VideoclubType } from "./typedef";
 import { getAll, getOne } from "./resolver";
+import IRoute from "@app/api/route";
 
+export class VideoclubRouter extends IRoute
+{
 
-export const userQueries: GraphQLFieldConfigMap<any, any, any> = {
-    user: {
-        type: UserType,
+    user: GraphQLFieldConfig<any, any, any> = {
+        type: VideoclubType,
         description: 'Retrieve single user by id',
-        args: {
-            id: { type: GraphQLString }
-        },
+        args: { id: { type: GraphQLString } },
         resolve: getOne
-    },
-    users: {
-        type: GraphQLList(UserType),
+    }
+
+
+    users: GraphQLFieldConfig<any, any, any> = {
+        type: GraphQLList(VideoclubType),
         description: 'Find users',
         resolve: getAll
-    },
+    }
+
+    constructor()
+    {
+        super();
+        this.routes = {user: this.user, users: this.users};
+    }
 }
