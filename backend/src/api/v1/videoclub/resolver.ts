@@ -1,13 +1,13 @@
 'use strict';
 
-import { User } from "";
+import { Videoclub } from "@models/index";
 
 export const getAll = async () => {
-    const data = await User.find({}).exec();
+    const data = await Videoclub.find({}).exec();
     return data;
 }
 
 export const getOne = async (_, { id }) => {
-    const data = await User.findById(id).exec();
+    const data = await Videoclub.findById(id).exec();
     return data;
 }

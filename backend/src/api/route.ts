@@ -1,15 +1,22 @@
 'use strict';
 
-import { GraphQLFieldConfigMap } from "graphql";
-
 /**
  * Class every exported route must implement
  *
  * @export
  * @class IRoute
  */
-export default class IRoute {
+export class IRoute<T> {
     
-    routes: GraphQLFieldConfigMap<any, any, any>;
+    routes: Omit<T, keyof IRoute<T>>;
+    protectedRoutes: {route: keyof Omit<T, keyof IRoute<T>>, privileges: 'admin' | 'authenticated'}[]
+
+    getRoutes() {
+        return this.routes;
+    };
+
+    getProtectedRoutes() {
+        return this.protectedRoutes;
+    };
 
 }

@@ -9,10 +9,15 @@
 import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
 import { VideoclubType } from "./typedef";
 import { getAll, getOne } from "./resolver";
-import IRoute from "@app/api/route";
-
-export class VideoclubRouter extends IRoute
-{
+import { IRoute } from "@app/api/route";
+/**
+ * Video routes
+ *
+ * @export
+ * @class VideoclubRouter
+ * @extends {IRoute}
+ */
+export class VideoclubRouter extends IRoute<VideoclubRouter> {
 
     user: GraphQLFieldConfig<any, any, any> = {
         type: VideoclubType,
@@ -28,9 +33,9 @@ export class VideoclubRouter extends IRoute
         resolve: getAll
     }
 
-    constructor()
-    {
+    constructor() {
         super();
-        this.routes = {user: this.user, users: this.users};
+        this.routes = { user: this.user, users: this.users };
+        this.protectedRoutes = [{ route: 'user', privileges: 'admin' }]
     }
 }

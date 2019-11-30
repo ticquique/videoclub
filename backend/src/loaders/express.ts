@@ -2,7 +2,6 @@
 
 import getEnv from "@env";
 import ILoader from "@loaders/interfaces";
-import { schema } from '../api/v1';
 import * as express from "express";
 import * as log4js from 'log4js';
 import { httpLogger, initialLogger } from "@utils/logger";

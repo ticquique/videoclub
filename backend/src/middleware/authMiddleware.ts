@@ -1,29 +1,32 @@
 'use strict';
 
-import { rule, shield } from 'graphql-shield'
-import { Rule } from 'graphql-shield/dist/rules';
+import { rule, shield, IRule, and } from 'graphql-shield'
 
 /**
  * Authentication middleware
  **/
 export class AuthMiddleware {
-    isAuthenticated: Rule;
-    isAdmin: Rule;
-    isUser: Rule;
+    isAuthenticated: IRule;
+    isAdmin: IRule;
 
     constructor() {
-        this.isAuthenticated = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.member !== null)
-        this.isAdmin = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.user.privileges === 'admin')
-        this.isAuthenticated = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.user.privileges === 'user')
+        this.isAuthenticated = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.member !== null || ctx.member !== undefined)
+        this.isAdmin = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.administrator !== null || ctx.administrator !== undefined)
     }
 
-    protectRules = () => {
-        
+    getMiddleware = (...rules: { route: string, privileges: 'admin' | 'authenticated' }[]) => {
+        return shield({
+            Query: rules.reduce((old, current) => ({
+                ...old,
+                [current.route]: current.privileges === 'admin' ?
+                    and(this.isAuthenticated, this.isAdmin) : this.isAuthenticated
+            }), {}),
+        })
     }
 }
 
 
-/* 
+/*
 
 const isAuthenticated = rule({ cache: 'contextual' })(
     async (parent, args, ctx, info) => {
