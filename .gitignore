@@ -6,3 +6,6 @@ data.json
 package-lock.json
 mongo_dump_*
 .vscode
+
+# webstorm files
+.idea/
