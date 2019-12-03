@@ -5,6 +5,7 @@ import ILoader from "@loaders/interfaces";
 import * as express from "express";
 import * as log4js from 'log4js';
 import { httpLogger, initialLogger } from "@utils/logger";
+import schema from "@v1/schema";
 /**
  * Loader for express application
  *

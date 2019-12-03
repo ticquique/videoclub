@@ -6,3 +6,4 @@ export * from '@models/rent';
 export * from '@models/administrator'
 export * from '@models/member'
 export * from '@models/statistic'
+export * from '@models/user'

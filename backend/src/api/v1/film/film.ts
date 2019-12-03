@@ -1,4 +1,4 @@
-/*  - Código del videoclub (autonumérico)
+/*  - Código del film (autonumérico)
     - Nombre del gerente (cadena, obligatorio y editable)
     - Ciudad (cadena, obligatorio y editable)
     - Calle (cadena, obligatorio y editable)
@@ -7,35 +7,35 @@
 'use strict';
 
 import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
-import { VideoclubType } from "./typedef";
+import { FilmType } from "./typedef";
 import { getAll, getOne } from "./resolver";
 import { IRoute } from "@app/api/route";
 /**
  * Video routes
  *
  * @export
- * @class VideoclubRouter
+ * @class FilmRouter
  * @extends {IRoute}
  */
-export class VideoclubRouter extends IRoute<VideoclubRouter> {
+export class FilmRouter extends IRoute<FilmRouter> {
 
-    videoclub: GraphQLFieldConfig<any, any, any> = {
-        type: VideoclubType,
-        description: 'Retrieve single videoclub by id',
+    film: GraphQLFieldConfig<any, any, any> = {
+        type: FilmType,
+        description: 'Retrieve single film by id',
         args: { id: { type: GraphQLString } },
         resolve: getOne
     }
 
 
-    videoclubs: GraphQLFieldConfig<any, any, any> = {
-        type: GraphQLList(VideoclubType),
-        description: 'Find videoclubs',
+    films: GraphQLFieldConfig<any, any, any> = {
+        type: GraphQLList(FilmType),
+        description: 'Find films',
         resolve: getAll
     }
 
     constructor() {
         super();
-        this.routes = { videoclub: this.videoclub, videoclubs: this.videoclubs };
-        this.protectedRoutes = [{ route: 'videoclub', privileges: 'admin' }]
+        this.routes = { film: this.film, films: this.films };
+        this.protectedRoutes = [{ route: 'film', privileges: 'admin' }]
     }
 }

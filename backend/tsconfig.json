@@ -12,7 +12,7 @@
             "@utils/*": ["utils/*"],
             "@models/*": ["models/*"],
             "@middleware/*": ["middleware/*"],
-            "@v1": ["api/v1"],
+            "@v1/*": ["api/v1/*"],
             "@env": ["env"],
         },
     }
