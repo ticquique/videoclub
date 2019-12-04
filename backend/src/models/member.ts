@@ -1,6 +1,10 @@
 import { Document, Schema, model, Model } from 'mongoose';
 import { IMember } from '@interfaces/index';
 
+/* - Código del socio (autonumérico)
+- Nombre (cadena, obligatorio y editable)
+- Edad (entero, obligatorio y editable) */
+
 export interface IMemberModel extends IMember, Document {
 }
 
@@ -8,25 +12,23 @@ class MemberClass {
 
 }
 
+export interface IMember {
+    _id: any;
+    id?: any;
+    name: string;
+    age: number;
+    created_at: Date;
+    updated_at: Date;
+}
 const MemberFields = {
-    username: {
+    name: {
         type: String,
         index: true,
-        unique: true,
-        dropDups: true,
         required: true,
     },
-    password: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 80,
-        select: false,
-    },
-    privileges: {
-        type: String,
-        enum: ['admin', 'user'],
-        default: 'user'
+    age: {
+        type: Number,
+        required: true
     }
 };
 

@@ -1,37 +1,46 @@
 import { Document, Schema, model, Model } from 'mongoose';
 import { IStatistic } from '@interfaces/index';
+import { Rent } from './rent';
+
+/*  - Código de la estadística (autonumérico)
+    - Fecha de creación (fecha, obligatorio y no editable)
+    - Total gastado (real, obligatorio y derivado) */
 
 export interface IStatisticModel extends IStatistic, Document {
 }
 
-class StatisticClass {
-
-}
+class StatisticClass { }
 
 const StatisticFields = {
-    username: {
-        type: String,
-        index: true,
-        unique: true,
-        dropDups: true,
+    administrator: {
+        type: { type: Schema.Types.ObjectId, ref: 'Administrator' },
         required: true,
     },
-    password: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 80,
-        select: false,
+    member: {
+        type: { type: Schema.Types.ObjectId, ref: 'Member' },
+        required: true
     },
-    privileges: {
-        type: String,
-        enum: ['admin', 'user'],
-        default: 'user'
+    rents: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Rent' }],
+        default: []
+    },
+    amount: {
+        type: Number,
+        default: 0
     }
 };
 
-const StatisticSchema = new Schema(StatisticFields, {
+const StatisticSchema = new Schema<IStatistic>(StatisticFields, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+});
+
+StatisticSchema.pre('save', async function (this: IStatisticModel, next) {
+    const self = this;
+    try {
+        const rents = await Rent.find({ '_id': { $in: self.rents } });
+        self.amount = rents.reduce((old, current) => old + current.amount, 0);
+        next();
+    } catch (e) { next(e); }
 });
 
 StatisticSchema.loadClass(StatisticClass);

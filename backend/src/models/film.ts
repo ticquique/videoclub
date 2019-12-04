@@ -1,6 +1,12 @@
 import { Document, Schema, model, Model } from 'mongoose';
 import { IFilm } from '@interfaces/index';
 
+/* - Código de la película (autonumérico)
+- Nombre (cadena, obligatorio y editable)
+- Director (cadena, opcional y editable)
+- Fecha de estreno (fecha, obligatorio y editable)
+- Precio de alquiler (real, obligatorio y editable) */
+
 export interface IFilmModel extends IFilm, Document {
 }
 
@@ -9,24 +15,25 @@ class FilmClass {
 }
 
 const FilmFields = {
-    username: {
+    videoclub_code: {
+        type: { type: Schema.Types.ObjectId, ref: 'Videoclub' },
+        required: true
+    },
+    name: {
         type: String,
-        index: true,
-        unique: true,
-        dropDups: true,
         required: true,
     },
-    password: {
+    director: {
         type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 80,
-        select: false,
+        required: true
     },
-    privileges: {
-        type: String,
-        enum: ['admin', 'user'],
-        default: 'user'
+    released_at: {
+        type: Date,
+        required: true
+    },
+    rent_price: {
+        type: Number,
+        required: true
     }
 };
 

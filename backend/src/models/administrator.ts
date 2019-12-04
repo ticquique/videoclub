@@ -1,6 +1,9 @@
 import { Document, Schema, model, Model } from 'mongoose';
 import { IAdministrator } from '@interfaces/index';
 
+/* - Código del administrador (autonumérico)
+   - Nombre (cadena, obligatorio y editable) */
+
 export interface IAdministratorModel extends IAdministrator, Document {
 }
 
@@ -11,22 +14,7 @@ class AdministratorClass {
 const AdministratorFields = {
     username: {
         type: String,
-        index: true,
-        unique: true,
-        dropDups: true,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 80,
-        select: false,
-    },
-    privileges: {
-        type: String,
-        enum: ['admin', 'user'],
-        default: 'user'
+        required: true
     }
 };
 
