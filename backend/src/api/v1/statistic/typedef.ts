@@ -2,8 +2,8 @@
 
 import { GraphQLObjectType, GraphQLString, GraphQLEnumType } from 'graphql';
 
-export const VideoclubType = new GraphQLObjectType({
-    name: 'Videoclub',
+export const StatisticType = new GraphQLObjectType({
+    name: 'Statistic',
     fields: {
         id: { type: GraphQLString },
         username: { type: GraphQLString },

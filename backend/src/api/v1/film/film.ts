@@ -35,7 +35,6 @@ export class FilmRouter extends IRoute<FilmRouter> {
 
     constructor() {
         super();
-        this.routes = { film: this.film, films: this.films };
         this.protectedRoutes = [{ route: 'film', privileges: 'admin' }]
     }
 }

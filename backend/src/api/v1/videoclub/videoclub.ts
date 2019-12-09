@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { VideoclubType } from "./typedef";
 import { getAll, getOne } from "./resolver";
 import { IRoute } from "@app/api/route";
@@ -33,9 +33,16 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
         resolve: getAll
     }
 
+    mutations = {
+        videoclubs: {
+            type: GraphQLList(VideoclubType),
+            description: 'Find videoclubs',
+            resolve: getAll
+        }
+    }
+
     constructor() {
         super();
-        this.routes = { videoclub: this.videoclub, videoclubs: this.videoclubs };
-        this.protectedRoutes = [{ route: 'videoclub', privileges: 'admin' }]
+        this.protectedRoutes = [{ route: 'videoclub', privileges: 'admin' }];
     }
 }

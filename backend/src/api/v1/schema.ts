@@ -20,12 +20,20 @@ export default graphqlHTTP(async (request) => {
         ...videoclubRouter.getProtectedRoutes()
     ]
 
+    const mutations = {
+        ...videoclubRouter.getMutations()
+    }
+
     return {
         schema: applyMiddleware(new GraphQLSchema({
             query: new GraphQLObjectType({
                 name: 'Query',
                 fields: routes
             }),
+            mutation: new GraphQLObjectType({
+                name: 'Mutation',
+                fields: mutations
+            })
         }), authService.getMiddleware(...protectedRoutes)),
         graphiql: !env.production,
         context: {

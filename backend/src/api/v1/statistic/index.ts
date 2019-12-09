@@ -1,3 +1,3 @@
 'use strict';
 
-export * from './videoclub';
+export * from './statistic';

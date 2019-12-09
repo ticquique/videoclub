@@ -1,6 +1,6 @@
 'use strict';
 
-import { GraphQLObjectType, GraphQLString, GraphQLEnumType } from 'graphql';
+import { GraphQLObjectType, GraphQLString } from 'graphql';
 
 export const VideoclubType = new GraphQLObjectType({
     name: 'User',

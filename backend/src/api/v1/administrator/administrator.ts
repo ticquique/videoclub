@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { AdministratorType } from "./typedef";
 import { getAll, getOne } from "./resolver";
 import { IRoute } from "@app/api/route";
@@ -35,7 +35,6 @@ export class AdministratorRouter extends IRoute<AdministratorRouter> {
 
     constructor() {
         super();
-        this.routes = { administrator: this.administrator, administrators: this.administrators };
         this.protectedRoutes = [{ route: 'administrator', privileges: 'admin' }]
     }
 }
