@@ -47,6 +47,6 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
 
     constructor() {
         super();
-        this.protectedRoutes = [{ route: 'videoclub', privileges: 'admin' }];
+        /* this.protectedRoutes = [{ route: 'videoclub', privileges: 'admin' }]; */
     }
 }

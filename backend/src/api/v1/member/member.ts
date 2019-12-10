@@ -47,6 +47,6 @@ export class MemberRouter extends IRoute<MemberRouter> {
 
     constructor() {
         super();
-        this.protectedRoutes = [{ route: 'member', privileges: 'admin' }]
+        /* this.protectedRoutes = [{ route: 'member', privileges: 'admin' }] */
     }
 }

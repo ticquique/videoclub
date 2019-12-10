@@ -47,6 +47,6 @@ export class StatisticRouter extends IRoute<StatisticRouter> {
 
     constructor() {
         super();
-        this.protectedRoutes = [{ route: 'statistic', privileges: 'admin' }]
+        /* this.protectedRoutes = [{ route: 'statistic', privileges: 'admin' }] */
     }
 }

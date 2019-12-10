@@ -47,6 +47,6 @@ export class RentRouter extends IRoute<RentRouter> {
 
     constructor() {
         super();
-        this.protectedRoutes = [{ route: 'rent', privileges: 'admin' }]
+        /* this.protectedRoutes = [{ route: 'rent', privileges: 'admin' }] */
     }
 }
