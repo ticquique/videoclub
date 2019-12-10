@@ -1,13 +1,12 @@
 'use strict';
 
 import { Administrator } from "@models/index";
+import { IAdministrator } from "@interfaces/index";
+import { All } from "@app/api/methods";
 
-export const getAll = async () => {
-    const data = await Administrator.find({}).exec();
-    return data;
-}
-
-export const getOne = async (_, { id }) => {
-    const data = await Administrator.findById(id).exec();
-    return data;
+export class AdministratorResolver extends All<IAdministrator>{
+    constructor() { 
+        super();
+        this.model = Administrator 
+    }
 }

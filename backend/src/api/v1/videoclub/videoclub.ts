@@ -34,9 +34,9 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
     }
 
     mutations = {
-        videoclubs: {
-            type: GraphQLList(VideoclubType),
-            description: 'Find videoclubs',
+        videoclub: {
+            type: VideoclubType,
+            description: 'Insert or update videoclub',
             resolve: getAll
         }
     }
