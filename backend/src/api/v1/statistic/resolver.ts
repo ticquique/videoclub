@@ -1,13 +1,12 @@
 'use strict';
 
 import { Statistic } from "@models/index";
+import { IStatistic } from "@interfaces/index";
+import { All } from "@app/api/methods";
 
-export const getAll = async () => {
-    const data = await Statistic.find({}).exec();
-    return data;
-}
-
-export const getOne = async (_, { id }) => {
-    const data = await Statistic.findById(id).exec();
-    return data;
+export class StatisticResolver extends All<IStatistic>{
+    constructor() { 
+        super();
+        this.model = Statistic 
+    }
 }

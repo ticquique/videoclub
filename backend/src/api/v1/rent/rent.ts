@@ -6,10 +6,12 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { RentType } from "./typedef";
-import { getAll, getOne } from "./resolver";
+import { RentResolver } from "./resolver";
 import { IRoute } from "@app/api/route";
+import { CreateOptions, FindOptions } from "@app/api/methods";
+import { IRent } from "@app/interfaces";
 /**
  * Video routes
  *
@@ -19,18 +21,28 @@ import { IRoute } from "@app/api/route";
  */
 export class RentRouter extends IRoute<RentRouter> {
 
+    resolver = new RentResolver()
+
     rent: GraphQLFieldConfig<any, any, any> = {
         type: RentType,
         description: 'Retrieve single rent by id',
         args: { id: { type: GraphQLString } },
-        resolve: getOne
+        resolve: (_, args) => this.resolver.find(null, { resource: { _id: args.id } })
     }
 
 
     rents: GraphQLFieldConfig<any, any, any> = {
         type: GraphQLList(RentType),
         description: 'Find rents',
-        resolve: getAll
+        resolve: (_, args: FindOptions<IRent>) => this.resolver.find(null, args)
+    }
+
+    mutations = {
+        rent: {
+            type: RentType,
+            description: 'Insert or update videoclub',
+            resolve: (_, args: CreateOptions<IRent>) => this.resolver.create(null, args)
+        }
     }
 
     constructor() {

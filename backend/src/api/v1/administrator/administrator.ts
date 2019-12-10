@@ -13,8 +13,6 @@ import { AdministratorType } from "./typedef";
 import { IAdministrator } from "@app/interfaces";
 import { CreateOptions, FindOptions } from "@app/api/methods";
 
-const resolver = new AdministratorResolver();
-
 /**
  * Video routes
  *
@@ -23,32 +21,33 @@ const resolver = new AdministratorResolver();
  * @extends {IRoute}
  */
 export class AdministratorRouter extends IRoute<AdministratorRouter> {
+    resolver = new AdministratorResolver();
 
     administrator: GraphQLFieldConfig<any, any, any> = {
         type: AdministratorType,
         description: 'Retrieve single administrator by id',
         args: { id: { type: GraphQLString } },
-        resolve: (_, args) => resolver.find(null, { resource: { _id: args.id } })
+        resolve: (_, args) => this.resolver.find(null, { resource: { _id: args.id } })
     }
 
 
     administrators: GraphQLFieldConfig<any, any, any> = {
         type: GraphQLList(AdministratorType),
         description: 'Find administrators',
-        args: resolver.FindableType,
-        resolve: (_, args: FindOptions<IAdministrator>) => resolver.find(null, args)
+        args: this.resolver.FindableType,
+        resolve: (_, args: FindOptions<IAdministrator>) => this.resolver.find(null, args)
     }
 
     mutations = {
         administrator: {
             type: AdministratorType,
             description: 'Insert or update videoclub',
-            resolve: (_, args: CreateOptions<IAdministrator>) => resolver.create(null, args)
+            resolve: (_, args: CreateOptions<IAdministrator>) => this.resolver.create(null, args)
         }
     }
 
     constructor() {
         super();
-        this.protectedRoutes = [{ route: 'administrator', privileges: 'admin' }]
+        /* this.protectedRoutes = [{ route: 'administrator', privileges: 'admin' }] */
     }
 }

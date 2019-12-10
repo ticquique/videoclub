@@ -1,13 +1,12 @@
 'use strict';
 
 import { Member } from "@models/index";
+import { IMember } from "@interfaces/index";
+import { All } from "@app/api/methods";
 
-export const getAll = async () => {
-    const data = await Member.find({}).exec();
-    return data;
-}
-
-export const getOne = async (_, { id }) => {
-    const data = await Member.findById(id).exec();
-    return data;
+export class MemberResolver extends All<IMember>{
+    constructor() { 
+        super();
+        this.model = Member 
+    }
 }

@@ -8,8 +8,10 @@
 
 import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
 import { FilmType } from "./typedef";
-import { getAll, getOne } from "./resolver";
+import { FilmResolver } from "./resolver";
 import { IRoute } from "@app/api/route";
+import { CreateOptions, FindOptions } from "@app/api/methods";
+import { IFilm } from "@app/interfaces";
 /**
  * Video routes
  *
@@ -18,23 +20,33 @@ import { IRoute } from "@app/api/route";
  * @extends {IRoute}
  */
 export class FilmRouter extends IRoute<FilmRouter> {
+    
+    resolver = new FilmResolver();
 
     film: GraphQLFieldConfig<any, any, any> = {
         type: FilmType,
         description: 'Retrieve single film by id',
         args: { id: { type: GraphQLString } },
-        resolve: getOne
+        resolve: (_, args) => this.resolver.find(null, { resource: { _id: args.id } })
     }
 
 
     films: GraphQLFieldConfig<any, any, any> = {
         type: GraphQLList(FilmType),
         description: 'Find films',
-        resolve: getAll
+        resolve: (_, args: FindOptions<IFilm>) => this.resolver.find(null, args)
+    }
+
+    mutations = {
+        film: {
+            type: FilmType,
+            description: 'Insert or update videoclub',
+            resolve: (_, args: CreateOptions<IFilm>) => this.resolver.create(null, args)
+        }
     }
 
     constructor() {
         super();
-        this.protectedRoutes = [{ route: 'film', privileges: 'admin' }]
+        /* this.protectedRoutes = [{ route: 'film', privileges: 'admin' }] */
     }
 }

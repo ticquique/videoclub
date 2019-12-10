@@ -1,13 +1,12 @@
 'use strict';
 
 import { Rent } from "@models/index";
+import { IRent } from "@interfaces/index";
+import { All } from "@app/api/methods";
 
-export const getAll = async () => {
-    const data = await Rent.find({}).exec();
-    return data;
-}
-
-export const getOne = async (_, { id }) => {
-    const data = await Rent.findById(id).exec();
-    return data;
+export class RentResolver extends All<IRent>{
+    constructor() { 
+        super();
+        this.model = Rent 
+    }
 }
