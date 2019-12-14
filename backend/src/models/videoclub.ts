@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from 'mongoose';
-import { IVideoclub } from '@interfaces/index';
+import { IVideoclub } from '../interfaces';
 
 /* - Código del videoclub (autonumérico)
 - Nombre del gerente (cadena, obligatorio y editable)

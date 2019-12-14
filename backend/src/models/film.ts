@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from 'mongoose';
-import { IFilm } from '@interfaces/index';
+import { IFilm } from '../interfaces';
 
 /* - Código de la película (autonumérico)
 - Nombre (cadena, obligatorio y editable)
@@ -16,7 +16,8 @@ class FilmClass {
 
 const FilmFields = {
     videoclub_code: {
-        type: { type: Schema.Types.ObjectId, ref: 'Videoclub' },
+        type: Schema.Types.ObjectId, 
+        ref: 'Videoclub',
         required: true
     },
     name: {

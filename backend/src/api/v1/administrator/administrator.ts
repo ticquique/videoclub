@@ -8,10 +8,10 @@
 
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { AdministratorResolver } from "./resolver";
-import { IRoute } from "@app/api/route";
+import { IRoute } from "../../route";
 import { AdministratorType } from "./typedef";
-import { IAdministrator } from "@app/interfaces";
-import { CreateOptions, FindOptions } from "@app/api/methods";
+import { IAdministrator } from "../../../interfaces";
+import { CreateOptions, FindOptions } from "../../methods";
 
 /**
  * Video routes

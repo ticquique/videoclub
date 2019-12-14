@@ -2,9 +2,9 @@
 
 import { rule, shield, IRule, and } from 'graphql-shield'
 import { sign, verify } from 'jsonwebtoken';
-import { IUser } from '@app/interfaces/user';
-import getEnv from '@env';
-import { User } from '@models/index';
+import { IUser } from '../interfaces';
+import getEnv from '../env';
+import { User } from '../models';
 
 export enum Privileges {
     'admin',

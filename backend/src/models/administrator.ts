@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from 'mongoose';
-import { IAdministrator } from '@interfaces/index';
+import { IAdministrator } from '../interfaces';
 
 /* - Código del administrador (autonumérico)
    - Nombre (cadena, obligatorio y editable) */

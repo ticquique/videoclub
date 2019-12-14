@@ -8,10 +8,10 @@
 
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { MemberType } from "./typedef";
-import { IRoute } from "@app/api/route";
+import { IRoute } from "../../route";
 import { MemberResolver } from "./resolver";
-import { FindOptions, CreateOptions } from "@app/api/methods";
-import { IMember } from "@app/interfaces";
+import { FindOptions, CreateOptions } from "../../methods";
+import { IMember } from "../../../interfaces";
 /**
  * Video routes
  *

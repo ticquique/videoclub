@@ -1,8 +1,8 @@
 'use strict';
 
-import { Member } from "@models/index";
-import { IMember } from "@interfaces/index";
-import { All } from "@app/api/methods";
+import { Member } from "../../../models";
+import { IMember } from "../../../interfaces";
+import { All } from "../../methods";
 
 export class MemberResolver extends All<IMember>{
     constructor() { 

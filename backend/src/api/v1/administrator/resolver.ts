@@ -1,8 +1,8 @@
 'use strict';
 
-import { Administrator } from "@models/index";
-import { IAdministrator } from "@interfaces/index";
-import { All } from "@app/api/methods";
+import { Administrator } from "../../../models";
+import { IAdministrator } from "../../../interfaces";
+import { All } from "../../methods";
 
 export class AdministratorResolver extends All<IAdministrator>{
     constructor() { 

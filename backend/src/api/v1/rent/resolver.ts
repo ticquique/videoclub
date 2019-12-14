@@ -1,8 +1,8 @@
 'use strict';
 
-import { Rent } from "@models/index";
-import { IRent } from "@interfaces/index";
-import { All } from "@app/api/methods";
+import { Rent } from "../../../models";
+import { IRent } from "../../../interfaces";
+import { All } from "../../methods";
 
 export class RentResolver extends All<IRent>{
     constructor() { 

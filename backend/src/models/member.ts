@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from 'mongoose';
-import { IMember } from '@interfaces/index';
+import { IMember } from '../interfaces';
 
 /* - Código del socio (autonumérico)
 - Nombre (cadena, obligatorio y editable)
@@ -12,14 +12,6 @@ class MemberClass {
 
 }
 
-export interface IMember {
-    _id: any;
-    id?: any;
-    name: string;
-    age: number;
-    created_at: Date;
-    updated_at: Date;
-}
 const MemberFields = {
     name: {
         type: String,

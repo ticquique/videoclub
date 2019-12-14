@@ -1,6 +1,7 @@
 .history*
 node_modules
 db
+dist
 .env
 data.json
 package-lock.json

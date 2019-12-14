@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from 'mongoose';
-import { IStatistic } from '@interfaces/index';
+import { IStatistic } from '../interfaces';
 import { Rent } from './rent';
 
 /*  - Código de la estadística (autonumérico)
@@ -13,11 +13,13 @@ class StatisticClass { }
 
 const StatisticFields = {
     administrator: {
-        type: { type: Schema.Types.ObjectId, ref: 'Administrator' },
+        type: Schema.Types.ObjectId, 
+        ref: 'Administrator',
         required: true,
     },
     member: {
-        type: { type: Schema.Types.ObjectId, ref: 'Member' },
+        type: Schema.Types.ObjectId, 
+        ref: 'Member',
         required: true
     },
     rents: {

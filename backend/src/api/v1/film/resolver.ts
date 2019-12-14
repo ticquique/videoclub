@@ -1,8 +1,8 @@
 'use strict';
 
-import { Film } from "@models/index";
-import { IFilm } from "@interfaces/index";
-import { All } from "@app/api/methods";
+import { Film } from "../../../models";
+import { IFilm } from "../../../interfaces";
+import { All } from "../../methods";
 
 export class FilmResolver extends All<IFilm>{
     constructor() { 

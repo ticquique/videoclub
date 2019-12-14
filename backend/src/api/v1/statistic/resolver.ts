@@ -1,8 +1,8 @@
 'use strict';
 
-import { Statistic } from "@models/index";
-import { IStatistic } from "@interfaces/index";
-import { All } from "@app/api/methods";
+import { Statistic } from "../../../models";
+import { IStatistic } from "../../../interfaces";
+import { All } from "../../methods";
 
 export class StatisticResolver extends All<IStatistic>{
     constructor() { 

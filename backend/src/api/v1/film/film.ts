@@ -9,9 +9,9 @@
 import { GraphQLList, GraphQLString, GraphQLFieldConfigMap, GraphQLFieldConfig } from "graphql";
 import { FilmType } from "./typedef";
 import { FilmResolver } from "./resolver";
-import { IRoute } from "@app/api/route";
-import { CreateOptions, FindOptions } from "@app/api/methods";
-import { IFilm } from "@app/interfaces";
+import { IRoute } from "../../route";
+import { CreateOptions, FindOptions } from "../../methods";
+import { IFilm } from "../../../interfaces";
 /**
  * Video routes
  *

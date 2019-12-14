@@ -1,1 +1,1 @@
-export * from '@middleware/authMiddleware';
+export * from './authMiddleware';

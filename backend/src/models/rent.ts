@@ -1,5 +1,5 @@
 import { Document, Schema, model, Model } from 'mongoose';
-import { IRent } from '@interfaces/index';
+import { IRent } from '../interfaces';
 import { Film } from './film';
 
 export interface IRentModel extends IRent, Document {
@@ -20,7 +20,8 @@ const RentFields = {
         default: []
     },
     member: {
-        type: { type: Schema.Types.ObjectId, ref: 'Member' },
+        type: Schema.Types.ObjectId, 
+        ref: 'Member',
         required: true
     },
     pickup_date: {

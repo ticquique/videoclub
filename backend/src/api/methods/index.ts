@@ -2,9 +2,9 @@ import { Findable } from './findable'
 import { Creable } from './creable';
 import { Countable } from './countable';
 
-export * from '@app/api/methods/countable'
-export * from '@app/api/methods/creable'
-export * from '@app/api/methods/findable'
+export * from './countable'
+export * from './creable'
+export * from './findable'
 
 function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {

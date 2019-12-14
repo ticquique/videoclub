@@ -9,9 +9,9 @@
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { StatisticType } from "./typedef";
 import { StatisticResolver } from "./resolver";
-import { IRoute } from "@app/api/route";
-import { FindOptions, CreateOptions } from "@app/api/methods";
-import { IStatistic } from "@app/interfaces";
+import { IRoute } from "../../route";
+import { FindOptions, CreateOptions } from "../../methods";
+import { IStatistic } from "../../../interfaces";
 /**
  * Video routes
  *

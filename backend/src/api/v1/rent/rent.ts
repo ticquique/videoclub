@@ -9,9 +9,9 @@
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { RentType } from "./typedef";
 import { RentResolver } from "./resolver";
-import { IRoute } from "@app/api/route";
-import { CreateOptions, FindOptions } from "@app/api/methods";
-import { IRent } from "@app/interfaces";
+import { IRoute } from "../../route";
+import { CreateOptions, FindOptions } from "../../methods";
+import { IRent } from "../../../interfaces";
 /**
  * Video routes
  *

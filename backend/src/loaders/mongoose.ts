@@ -1,7 +1,7 @@
 'use strict';
 
-import getEnv from "@env";
-import ILoader from "@loaders/interfaces";
+import getEnv from "../env";
+import ILoader from "./interfaces";
 import { connect } from "mongoose";
 import { MongoClientOptions } from "mongodb";
 

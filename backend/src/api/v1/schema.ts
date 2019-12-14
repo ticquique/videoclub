@@ -1,9 +1,9 @@
 
-import graphqlHTTP = require("express-graphql");
-import getEnv from "@env";
-import { AuthMiddleware } from "@middleware/index";
+import * as graphqlHTTP from "express-graphql";
+import getEnv from "../../env";
+import { AuthMiddleware } from "../../middleware";
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
-import { VideoclubRouter } from "@v1/videoclub";
+import { VideoclubRouter } from "./videoclub";
 import { applyMiddleware } from "graphql-middleware";
 
 export default graphqlHTTP(async (request) => {

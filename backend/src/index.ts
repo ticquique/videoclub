@@ -1,7 +1,7 @@
 'use strict';
 
-import { ExpressLoader, MongooseLoader } from '@loaders/index';
-import { initialLogger } from '@utils/logger';
+import { ExpressLoader, MongooseLoader } from './loaders';
+import { initialLogger } from './utils/logger';
 
 const loaders = [MongooseLoader, ExpressLoader];
 

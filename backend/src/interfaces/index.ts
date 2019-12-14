@@ -1,8 +1,9 @@
 'use strict';
 
-export * from '@interfaces/videoclub';
-export * from '@interfaces/film';
-export * from '@interfaces/rent';
-export * from '@interfaces/administrator'
-export * from '@interfaces/member'
-export * from '@interfaces/statistic'
+export * from './videoclub';
+export * from './film';
+export * from './rent';
+export * from './administrator'
+export * from './member'
+export * from './statistic'
+export * from './user'

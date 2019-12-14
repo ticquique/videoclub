@@ -9,9 +9,9 @@
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { VideoclubType } from "./typedef";
 import { VideoclubResolver } from "./resolver";
-import { IRoute } from "@app/api/route";
-import { CreateOptions, FindOptions } from "@app/api/methods";
-import { IVideoclub } from "@app/interfaces";
+import { IRoute } from "../../route";
+import { FindOptions, CreateOptions } from "../../methods";
+import { IVideoclub } from "../../../interfaces";
 /**
  * Video routes
  *

@@ -1,8 +1,6 @@
 'use strict';
 
-import { IAdministrator } from "@interfaces/index";
-import { IMember } from "@interfaces/index";
-import { IRent } from "@interfaces/index";
+import { IRent , IAdministrator, IMember} from "./index";
 
 export interface IStatistic {
     _id: any;
