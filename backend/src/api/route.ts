@@ -9,21 +9,21 @@ import { GraphQLFieldConfig } from "graphql";
  * @class IRoute
  */
 export class IRoute<T extends {
-    mutations: Partial<{ [any: string]: GraphQLFieldConfig<any, any, any> }>
+    mutations: any
 }> {
 
     routes: Partial<Omit<Omit<T, keyof IRoute<T>>, 'mutations' | 'resolver'>>;
-    protectedRoutes: { route: keyof Partial<Omit<T, keyof IRoute<T>>>, privileges: 'admin' | 'authenticated' }[]
+    protectedRoutes: { route: keyof Partial<Omit<T, keyof IRoute<T>>>, privileges: 'admin' | 'authenticated' }[] = []
     mutations: T['mutations']
 
     constructor() {
+    }
+
+    getRoutes() {
         this.routes = Reflect.ownKeys(this).filter(v => v !== 'routes' && v !== 'protectedRoutes' && v !== 'mutations' && v !== 'resolver').reduce((old, current) => ({
             ...old,
             [current]: Reflect.getOwnPropertyDescriptor(this, current).value
         }), {});
-    }
-
-    getRoutes() {
         return this.routes;
     };
 

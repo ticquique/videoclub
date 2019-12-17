@@ -11,30 +11,33 @@ export interface FindOptions<T> {
   aggregate?: any;
 }
 
+const findableScalar = new GraphQLScalarType({
+  name: 'FindableScalar',
+  description: 'Findable type',
+  serialize(value: string) { return JSON.parse(value) },
+  parseValue(value) { return JSON.stringify(value) }
+})
+
 export class Findable<T> {
+
   model: Model<T & Document>;
+  findableScalar = findableScalar;
+
+  constructor(model: Model<T & Document>) {
+    this.model = model;
+  }
 
   FindableType = {
     page: { type: GraphQLInt },
     perPage: { type: GraphQLInt },
     resource: {
-      type: new GraphQLScalarType({
-        name: 'FindableScalar',
-        description: 'Findable type',
-        serialize(value: string) { return JSON.parse(value) },
-        parseValue(value: T) { return JSON.stringify(value) }
-      })
+      type: this.findableScalar
     },
     sort: { type: GraphQLString },
     populate: { type: GraphQLString },
     lean: { type: GraphQLString },
     aggregate: {
-      type: new GraphQLScalarType({
-        name: 'FindableScalar',
-        description: 'Findable type',
-        serialize(value: string) { return JSON.parse(value) },
-        parseValue(value: T) { return JSON.stringify(value) }
-      })
+      type: this.findableScalar
     }
   };
 
@@ -48,6 +51,7 @@ export class Findable<T> {
     query = sort ? query.sort(sort) : query;
     query = populate ? query.populate(populate) : query;
     query = lean ? query.lean() : query;
-    return await query.exec();
+    const data = await query.exec();
+    return data;
   }
 }

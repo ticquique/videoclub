@@ -31,8 +31,8 @@ export class AuthMiddleware {
     isAdmin: IRule;
 
     constructor() {
-        this.isAuthenticated = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.member !== null || ctx.member !== undefined)
-        this.isAdmin = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.administrator !== null || ctx.administrator !== undefined)
+        this.isAuthenticated = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.member !== null && ctx.member !== undefined)
+        this.isAdmin = rule({ cache: 'contextual' })(async (parent, args, ctx, info) => ctx.administrator !== null && ctx.administrator !== undefined)
     }
 
     getMiddleware = (...rules: { route: string, privileges: 'admin' | 'authenticated' }[]) => {
@@ -85,7 +85,7 @@ export class AuthMiddleware {
 
         if (!/^Bearer$/i.test(scheme)) throw Error('Format is Authorization: Bearer [token]');
         const env = await getEnv();
-        const decoded = verify<Token>(credentials, env.application.secret, { algorithms: ['HS256'] });
+        const decoded: any = verify(credentials, env.application.secret, { algorithms: ['HS256'] });
         if (env.application.revoquedTokens.indexOf(decoded.sub) > -1) throw Error('User banned for some reason, check your email');
         return decoded;
     }

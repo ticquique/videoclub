@@ -6,7 +6,7 @@ import { All } from "../../methods";
 
 export class StatisticResolver extends All<IStatistic>{
     constructor() { 
-        super();
+        super(Statistic);
         this.model = Statistic 
     }
 }

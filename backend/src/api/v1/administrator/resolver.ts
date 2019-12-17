@@ -6,7 +6,7 @@ import { All } from "../../methods";
 
 export class AdministratorResolver extends All<IAdministrator>{
     constructor() { 
-        super();
+        super(Administrator);
         this.model = Administrator 
     }
 }

@@ -5,24 +5,28 @@ import { AuthMiddleware } from "../../middleware";
 import { GraphQLSchema, GraphQLObjectType } from "graphql";
 import { VideoclubRouter } from "./videoclub";
 import { applyMiddleware } from "graphql-middleware";
+import { StatisticRouter } from "./statistic";
+import { RentRouter } from "./rent";
+import { MemberRouter } from "./member";
+import { FilmRouter } from "./film";
+import { AdministratorRouter } from "./administrator";
 
 export default graphqlHTTP(async (request) => {
 
     const env = await getEnv();
     const authService = new AuthMiddleware();
-    const videoclubRouter = new VideoclubRouter();
+    const routers = [
+        new VideoclubRouter(),
+        new StatisticRouter(),
+        new RentRouter(),
+        new MemberRouter(),
+        new FilmRouter(),
+        new AdministratorRouter(),
+    ];
 
-    const routes = {
-        ...videoclubRouter.getRoutes()
-    }
-
-    const protectedRoutes = [
-        ...videoclubRouter.getProtectedRoutes()
-    ]
-
-    const mutations = {
-        ...videoclubRouter.getMutations()
-    }
+    const routes = routers.reduce((o,c) => ({...o, ...c.getRoutes()}), {})
+    const protectedRoutes = routers.reduce((o,c) => [...o, ...c.getProtectedRoutes()], [])
+    const mutations = routers.reduce((o,c) => ({...o, ...c.getMutations()}), {})
 
     return {
         schema: applyMiddleware(new GraphQLSchema({

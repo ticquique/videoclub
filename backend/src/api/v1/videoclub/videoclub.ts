@@ -7,10 +7,10 @@
 'use strict';
 
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
-import { VideoclubType } from "./typedef";
+import { VideoclubType, VideoclubInputType } from "./typedef";
 import { VideoclubResolver } from "./resolver";
 import { IRoute } from "../../route";
-import { FindOptions, CreateOptions } from "../../methods";
+import { FindOptions, CreateOptions, QueryPopulateType } from "../../methods";
 import { IVideoclub } from "../../../interfaces";
 /**
  * Video routes
@@ -27,13 +27,14 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
         type: VideoclubType,
         description: 'Retrieve single videoclub by id',
         args: { id: { type: GraphQLString } },
-        resolve: (_, args) => this.resolver.find(null, { resource: { _id: args.id } })
+        resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
 
     videoclubs: GraphQLFieldConfig<any, any, any> = {
         type: GraphQLList(VideoclubType),
         description: 'Find videoclubs',
+        args: this.resolver.FindableType,
         resolve: (_, args: FindOptions<IVideoclub>) => this.resolver.find(null, args)
     }
 
@@ -41,12 +42,13 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
         videoclub: {
             type: VideoclubType,
             description: 'Insert or update videoclub',
+            args: { element: { type: VideoclubInputType }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IVideoclub>) => this.resolver.create(null, args)
         }
     }
 
     constructor() {
         super();
-        /* this.protectedRoutes = [{ route: 'videoclub', privileges: 'admin' }]; */
+        /* this.protectedRoutes = [{ route: 'videoclubs', privileges: 'admin' }]; */
     }
 }

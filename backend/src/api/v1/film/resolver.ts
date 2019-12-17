@@ -6,7 +6,7 @@ import { All } from "../../methods";
 
 export class FilmResolver extends All<IFilm>{
     constructor() { 
-        super();
+        super(Film);
         this.model = Film 
     }
 }

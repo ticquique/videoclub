@@ -9,11 +9,15 @@ export interface CreateOptions<T> {
 export class Creable<T> {
   model: Model<T & Document>;
 
+  constructor(model: Model<T & Document>) {
+    this.model = model;
+  }
+
   CreableType = {
     element: {
       type: new GraphQLScalarType({
-        name: 'FindableScalar',
-        description: 'Findable type',
+        name: 'CreableScalar',
+        description: 'Creable type',
         serialize(value: string) { return JSON.parse(value) },
         parseValue(value: T) { return JSON.stringify(value) }
       })
@@ -23,6 +27,8 @@ export class Creable<T> {
 
   create = async (_, params: CreateOptions<T>) => {
     const {element, populate} = params;
+    console.log(element, populate);
+    console.log(params);
     let newElement = await this.model.create(element);
     newElement = populate ? await this.model.populate(newElement, populate) : newElement;
     return newElement;

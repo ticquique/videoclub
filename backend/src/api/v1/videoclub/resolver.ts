@@ -5,8 +5,7 @@ import { IVideoclub } from "../../../interfaces";
 import { All } from "../../methods";
 
 export class VideoclubResolver extends All<IVideoclub>{
-    constructor() { 
-        super();
-        this.model = Videoclub 
+    constructor() {
+        super(Videoclub);
     }
 }

@@ -9,9 +9,9 @@
 import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
 import { AdministratorResolver } from "./resolver";
 import { IRoute } from "../../route";
-import { AdministratorType } from "./typedef";
+import { AdministratorType, AdministratorInputType } from "./typedef";
 import { IAdministrator } from "../../../interfaces";
-import { CreateOptions, FindOptions } from "../../methods";
+import { CreateOptions, FindOptions, QueryPopulateType } from "../../methods";
 
 /**
  * Video routes
@@ -27,7 +27,7 @@ export class AdministratorRouter extends IRoute<AdministratorRouter> {
         type: AdministratorType,
         description: 'Retrieve single administrator by id',
         args: { id: { type: GraphQLString } },
-        resolve: (_, args) => this.resolver.find(null, { resource: { _id: args.id } })
+        resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
 
@@ -41,7 +41,8 @@ export class AdministratorRouter extends IRoute<AdministratorRouter> {
     mutations = {
         administrator: {
             type: AdministratorType,
-            description: 'Insert or update videoclub',
+            description: 'Insert or update administrator',
+            args: { element: { type: AdministratorInputType }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IAdministrator>) => this.resolver.create(null, args)
         }
     }

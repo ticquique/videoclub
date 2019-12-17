@@ -6,7 +6,7 @@ import { All } from "../../methods";
 
 export class MemberResolver extends All<IMember>{
     constructor() { 
-        super();
+        super(Member);
         this.model = Member 
     }
 }

@@ -6,7 +6,7 @@ import { All } from "../../methods";
 
 export class RentResolver extends All<IRent>{
     constructor() { 
-        super();
+        super(Rent);
         this.model = Rent 
     }
 }

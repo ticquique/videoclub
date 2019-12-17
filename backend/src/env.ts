@@ -5,8 +5,8 @@ const getOsEnv = (key: string | number, def: string = null) => process.env[key] 
 const osenv = {
     production: getOsEnv('PRODUCTION') === 'true',
     mongo: {
-        username: getOsEnv('MONGO_INITDB_ROOT_USERNAME'),
-        password: getOsEnv('MONGO_INITDB_ROOT_PASSWORD'),
+        username: getOsEnv('MONGO_USER'),
+        password: getOsEnv('MONGO_PASSWORD'),
         database: getOsEnv('MONGO_DATABASE')
     },
     express: {
