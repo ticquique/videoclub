@@ -1,6 +1,6 @@
 'use strict';
 
-import { GraphQLObjectType, GraphQLString, GraphQLEnumType, GraphQLList, GraphQLFloat, GraphQLNonNull } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLEnumType, GraphQLList, GraphQLFloat, GraphQLNonNull, GraphQLInputObjectType } from 'graphql';
 import { AdministratorType } from '../administrator/typedef';
 import { MemberType } from '../member/typedef';
 import { RentType } from '../rent/typedef';
@@ -35,7 +35,7 @@ export const StatisticType = new GraphQLObjectType({
     }
 });
 
-export const StatisticInputType = new GraphQLObjectType({
+export const StatisticInputType = new GraphQLInputObjectType({
     name: 'StatisticInputType',
     fields: {
         _id: { type: GraphQLString },

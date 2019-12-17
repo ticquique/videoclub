@@ -42,6 +42,14 @@ docker-compose up -d
 
 ---
 
+> Seed the database
+
+```shell
+bash bin/seed_db.sh
+```
+
+---
+
 ## Database
 
 - Información importante sobre los videoclubs de la cadena:

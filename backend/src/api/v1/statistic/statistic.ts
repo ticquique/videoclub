@@ -39,7 +39,7 @@ export class StatisticRouter extends IRoute<StatisticRouter> {
     }
 
     mutations = {
-        rent: {
+        statistic: {
             type: StatisticType,
             description: 'Insert or update videoclub',
             args: { element: { type: StatisticInputType }, populate: { type: QueryPopulateType } },
