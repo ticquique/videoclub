@@ -9,7 +9,7 @@ const members = [
 ];
 
 const videoclubs = [
-    { _id: "5df9502f9be06d0020ca5b29", manager: "manager", city: "valencia", street: "Calle del Oeste", postal_code: "46001" }
+    { _id: "5df9502f9be06d0020ca5b29", manager: "manage", city: "valencia", street: "Calle del Oeste", postal_code: "46001" }
 ];
 
 const films = [

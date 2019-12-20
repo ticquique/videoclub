@@ -36,16 +36,15 @@ const UserFields = {
     }
 };
 
-const UserSchema = new Schema(UserFields, {
+const UserSchema = new Schema<IUser>(UserFields, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
-UserSchema.pre('save', async function (next) {
-    const self: any = this;
+UserSchema.pre('save', async function (this: Document & IUser, next) {
     if (this.isModified('password')) {
         try {
-            const hash = await argon2.hash(self.password);
-            self.password = hash;
+            const hash = await argon2.hash(this.password);
+            this.password = hash;
             next();
         } catch (e) { next(e); }
     } else next();

@@ -11,4 +11,5 @@ export interface IUser {
     created_at: Date;
     updated_at: Date;
     privileges: Privileges;
+    password?: string;
 }

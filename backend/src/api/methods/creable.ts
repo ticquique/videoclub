@@ -26,12 +26,11 @@ export class Creable<T> {
   };
 
   create = async (_, params: CreateOptions<T>) => {
-    const {element, populate} = params;
-    console.log(element, populate);
-    console.log(params);
-    let newElement = await this.model.create(element);
-    newElement = populate ? await this.model.populate(newElement, populate) : newElement;
-    return newElement;
+    const { element, populate } = params;
+    const hasDocument = await this.model.exists({ _id: element['_id'] });
+    let document = await (hasDocument ? this.model.findOne(element) : new this.model(element).save());
+    document = populate ? await this.model.populate(document, populate) : document;
+    return document;
   }
 }
 

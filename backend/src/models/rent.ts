@@ -20,7 +20,7 @@ const RentFields = {
         default: []
     },
     member: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'Member',
         required: true
     },
@@ -42,11 +42,11 @@ const RentSchema = new Schema(RentFields, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
-RentSchema.pre('save', async function (this: IRentModel, next) {
-    const self = this;
+RentSchema.pre('save', async function (this: Document & IRent, next) {
     try {
-        const films = await Film.find({ '_id': { $in: self.films } });
-        self.amount = films.reduce((old, current) => old + current.rent_price, 0);
+        const films = await Film.find({ '_id': { $in: this.films } });
+        if (films.length < this.films.length) throw new Error('Invalid film id provided')
+        this.amount = films.reduce((old, current) => old + current.rent_price, 0);
         next();
     } catch (e) { next(e); }
 });

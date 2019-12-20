@@ -14,7 +14,8 @@ class AdministratorClass {
 const AdministratorFields = {
     username: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     }
 };
 
