@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig, GraphQLNonNull } from "graphql";
 import { AdministratorResolver } from "./resolver";
 import { IRoute } from "../../route";
 import { AdministratorType, AdministratorInputType } from "./typedef";
@@ -26,7 +26,7 @@ export class AdministratorRouter extends IRoute<AdministratorRouter> {
     administrator: GraphQLFieldConfig<any, any, any> = {
         type: AdministratorType,
         description: 'Retrieve single administrator by id',
-        args: { id: { type: GraphQLString } },
+        args: { id: { type: GraphQLNonNull(GraphQLString) } },
         resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
@@ -42,7 +42,7 @@ export class AdministratorRouter extends IRoute<AdministratorRouter> {
         administrator: {
             type: AdministratorType,
             description: 'Insert or update administrator',
-            args: { element: { type: AdministratorInputType }, populate: { type: QueryPopulateType } },
+            args: { element: { type: GraphQLNonNull(AdministratorInputType) }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IAdministrator>) => this.resolver.create(null, args)
         }
     }

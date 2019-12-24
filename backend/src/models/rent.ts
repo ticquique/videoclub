@@ -1,6 +1,7 @@
 import { Document, Schema, model, Model } from 'mongoose';
 import { IRent } from '../interfaces';
 import { Film } from './film';
+import { Member } from './member';
 
 export interface IRentModel extends IRent, Document {
 }
@@ -32,6 +33,9 @@ const RentFields = {
         type: Date,
         required: true
     },
+    _devolution_date: {
+        type: Date
+    },
     amount: {
         type: Number,
         default: 0
@@ -44,6 +48,11 @@ const RentSchema = new Schema(RentFields, {
 
 RentSchema.pre('save', async function (this: Document & IRent, next) {
     try {
+        const existMember = await Member.exists({ _id: this.member });
+        if (!existMember) throw (new Error('Invalid member code'));
+        if (new Date(this.devolution_date) <= new Date(this._devolution_date)) throw new Error('Rental date must be greather than previous')
+        this._devolution_date = this.devolution_date;
+        if (this.films?.length === 0) throw new Error('At least 1 film must be rented')
         const films = await Film.find({ '_id': { $in: this.films } });
         if (films.length < this.films.length) throw new Error('Invalid film id provided')
         this.amount = films.reduce((old, current) => old + current.rent_price, 0);

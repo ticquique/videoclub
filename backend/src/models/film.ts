@@ -46,12 +46,13 @@ const FilmSchema = new Schema(FilmFields, {
 
 
 FilmSchema.pre('save', async function (this: Document & IFilm, next) {
-    if (this.isModified('videoclub_code')) {
-        try {
+    try {
+        if (this.isModified('videoclub_code')) {
             const existVideoclub = await Videoclub.exists({ _id: this.videoclub_code })
-            if (existVideoclub) { next(); } else { next(new Error('Invalid videoclub code')) };
-        } catch (e) { next(e); }
-    } else next();
+            if (!existVideoclub) throw (new Error('Invalid videoclub code'));
+        }
+        next();
+    } catch (error) { next(error) }
 });
 
 FilmSchema.loadClass(FilmClass);

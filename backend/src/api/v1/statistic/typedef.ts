@@ -1,6 +1,6 @@
 'use strict';
 
-import { GraphQLObjectType, GraphQLString, GraphQLEnumType, GraphQLList, GraphQLFloat, GraphQLNonNull, GraphQLInputObjectType } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLEnumType, GraphQLList, GraphQLFloat, GraphQLNonNull, GraphQLInputObjectType, GraphQLInt } from 'graphql';
 import { AdministratorType } from '../administrator/typedef';
 import { MemberType } from '../member/typedef';
 import { RentType } from '../rent/typedef';
@@ -26,9 +26,10 @@ export const StatisticType = new GraphQLObjectType({
             type: MemberType 
         },
         rents: { 
-            resolve: async (parent, _) => await rentResolver.find(null, { page: 1, perPage: 1, resource: { _id: {$in: parent.administrator} } }),
+            resolve: async (parent, _) => await rentResolver.find(null, { page: 1, perPage: 1, resource: { _id: {$in: parent.rents} } }),
             type: GraphQLList(RentType)
         },
+        month: { type: GraphQLInt },
         amount: { type: GraphQLFloat },
         created_at: { type: GraphQLString },
         updated_at: { type: GraphQLString }
@@ -42,9 +43,6 @@ export const StatisticInputType = new GraphQLInputObjectType({
         id: { type: GraphQLString },
         administrator: { type: GraphQLNonNull(GraphQLString) },
         member: { type: GraphQLNonNull(GraphQLString) },
-        rents: { type: GraphQLNonNull(GraphQLList(GraphQLString)) },
-        amount: { type: GraphQLFloat },
-        created_at: { type: GraphQLString },
-        updated_at: { type: GraphQLString }
+        month: { type: GraphQLNonNull(GraphQLInt) }
     }
 });

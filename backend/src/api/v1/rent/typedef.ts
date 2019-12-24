@@ -35,10 +35,10 @@ export const RentInputType = new GraphQLInputObjectType({
     fields: {
         _id: { type: GraphQLString },
         id: { type: GraphQLString },
-        films: { type: GraphQLNonNull(GraphQLList(GraphQLString)) },
-        member: { type: GraphQLNonNull(GraphQLString) },
-        pickup_date: { type: GraphQLNonNull(GraphQLString) },
-        devolution_date: { type: GraphQLNonNull(GraphQLString) },
+        films: { type: GraphQLList(GraphQLString) },
+        member: { type: GraphQLString },
+        pickup_date: { type: GraphQLString },
+        devolution_date: { type: GraphQLString },
         created_at: { type: GraphQLString },
         updated_at: { type: GraphQLString }
     }

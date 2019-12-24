@@ -13,4 +13,5 @@ export interface IRent {
     amount: number;
     created_at: Date;
     updated_at: Date;
+    _devolution_date: Date;
 }
