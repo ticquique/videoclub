@@ -12,9 +12,13 @@ server {
     server_name  localhost;
     # access_log  /var/log/localhost/nginx.access.log;
     # error_log   /var/log/localhost/nginx.error.log;
-    root   /var/www/html;
-    index index.html;
+    index    index.html index.htm index.php;
     expires $expires;
+
+    location /docs {
+        alias   /var/www/html;
+        autoindex on;
+    }
 
     location / {
         proxy_pass http://node_angular:4200;

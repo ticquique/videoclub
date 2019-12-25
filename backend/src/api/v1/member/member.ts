@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig, GraphQLNonNull } from "graphql";
 import { MemberType, MemberInputType } from "./typedef";
 import { IRoute } from "../../route";
 import { MemberResolver } from "./resolver";
@@ -26,7 +26,7 @@ export class MemberRouter extends IRoute<MemberRouter> {
     member: GraphQLFieldConfig<any, any, any> = {
         type: MemberType,
         description: 'Retrieve single member by id',
-        args: { id: { type: GraphQLString } },
+        args: { id: { type: GraphQLNonNull(GraphQLString) } },
         resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
@@ -42,7 +42,7 @@ export class MemberRouter extends IRoute<MemberRouter> {
         member: {
             type: MemberType,
             description: 'Insert or update videoclub',
-            args: { element: { type: MemberInputType }, populate: { type: QueryPopulateType } },
+            args: { element: { type: GraphQLNonNull(MemberInputType) }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IMember>) => this.resolver.create(null, args)
         }
     }

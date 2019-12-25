@@ -9,6 +9,7 @@ export interface IStatistic {
     member: IMember;
     rents: IRent[];
     amount: number;
+    month: number;
     created_at: Date;
     updated_at: Date;
 }

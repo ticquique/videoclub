@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig, GraphQLNonNull } from "graphql";
 import { RentType, RentInputType } from "./typedef";
 import { RentResolver } from "./resolver";
 import { IRoute } from "../../route";
@@ -26,7 +26,7 @@ export class RentRouter extends IRoute<RentRouter> {
     rent: GraphQLFieldConfig<any, any, any> = {
         type: RentType,
         description: 'Retrieve single rent by id',
-        args: { id: { type: GraphQLString } },
+        args: { id: { type: GraphQLNonNull(GraphQLString) } },
         resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
@@ -42,7 +42,7 @@ export class RentRouter extends IRoute<RentRouter> {
         rent: {
             type: RentType,
             description: 'Insert or update videoclub',
-            args: { element: { type: RentInputType }, populate: { type: QueryPopulateType } },
+            args: { element: { type: GraphQLNonNull(RentInputType) }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IRent>) => this.resolver.create(null, args)
         }
     }

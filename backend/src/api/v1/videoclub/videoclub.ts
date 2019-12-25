@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig, GraphQLNonNull } from "graphql";
 import { VideoclubType, VideoclubInputType } from "./typedef";
 import { VideoclubResolver } from "./resolver";
 import { IRoute } from "../../route";
@@ -26,7 +26,7 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
     videoclub: GraphQLFieldConfig<any, any, any> = {
         type: VideoclubType,
         description: 'Retrieve single videoclub by id',
-        args: { id: { type: GraphQLString } },
+        args: { id: { type: GraphQLNonNull(GraphQLString) } },
         resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
@@ -42,7 +42,7 @@ export class VideoclubRouter extends IRoute<VideoclubRouter> {
         videoclub: {
             type: VideoclubType,
             description: 'Insert or update videoclub',
-            args: { element: { type: VideoclubInputType }, populate: { type: QueryPopulateType } },
+            args: { element: { type: GraphQLNonNull(VideoclubInputType) }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IVideoclub>) => this.resolver.create(null, args)
         }
     }

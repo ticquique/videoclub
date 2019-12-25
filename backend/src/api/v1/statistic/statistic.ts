@@ -6,7 +6,7 @@
 
 'use strict';
 
-import { GraphQLList, GraphQLString, GraphQLFieldConfig } from "graphql";
+import { GraphQLList, GraphQLString, GraphQLFieldConfig, GraphQLNonNull } from "graphql";
 import { StatisticType, StatisticInputType } from "./typedef";
 import { StatisticResolver } from "./resolver";
 import { IRoute } from "../../route";
@@ -26,7 +26,7 @@ export class StatisticRouter extends IRoute<StatisticRouter> {
     statistic: GraphQLFieldConfig<any, any, any> = {
         type: StatisticType,
         description: 'Retrieve single statistic by id',
-        args: { id: { type: GraphQLString } },
+        args: { id: { type: GraphQLNonNull(GraphQLString) } },
         resolve: async (_, {id}) => (await this.resolver.find(null, {page: 1, perPage: 1, resource: { _id: id } }))?.[0] ?? null
     }
 
@@ -42,7 +42,7 @@ export class StatisticRouter extends IRoute<StatisticRouter> {
         statistic: {
             type: StatisticType,
             description: 'Insert or update videoclub',
-            args: { element: { type: StatisticInputType }, populate: { type: QueryPopulateType } },
+            args: { element: { type: GraphQLNonNull(StatisticInputType) }, populate: { type: QueryPopulateType } },
             resolve: (_, args: CreateOptions<IStatistic>) => this.resolver.create(null, args)
         }
     }

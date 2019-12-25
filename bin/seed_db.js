@@ -30,7 +30,6 @@ const query = `mutation {
     ${videoclubs.reduce((old, current, i) => old + `videoclub${i}: videoclub(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
     ${films.reduce((old, current, i) => old + `film${i}: film(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
     ${rents.reduce((old, current, i) => old + `rent${i}: rent(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
-    ${statistics.reduce((old, current, i) => old + `statistic${i}: statistic(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
 }`;
 
 const data = JSON.stringify({
