@@ -6,5 +6,5 @@ import { StatisticsService } from '../../services/statistics.service';
   templateUrl: './list.component.html'
 })
 export class StatisticsListComponent {
-  constructor(private statisticsService: StatisticsService) { }
+  constructor(public statisticsService: StatisticsService) { }
 }

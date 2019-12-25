@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Movie } from '../../../models/movie';
-import { movies } from '../defaults';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {
     this.apiPath = ``;
-    this.movies = new BehaviorSubject<Array<Movie>>(movies);
+    this.movies = new BehaviorSubject<Array<Movie>>([]);
     this.movies$ = this.movies.asObservable();
   }
 

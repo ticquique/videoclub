@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Customer } from '../../../models/customer';
-import { customers } from '../defaults';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class CustomersService {
 
   constructor(private http: HttpClient) {
     this.apiPath = ``;
-    this.customers =  new BehaviorSubject<Array<Customer>>(customers);
+    this.customers =  new BehaviorSubject<Array<Customer>>([]);
     this.customers$ =  this.customers.asObservable();
   }
 

@@ -5,5 +5,5 @@ import { RentsService } from '../../services/rents.service';
   templateUrl: './list.component.html'
 })
 export class RentsListComponent {
-  constructor(private rentsService: RentsService) { }
+  constructor(public rentsService: RentsService) { }
 }
