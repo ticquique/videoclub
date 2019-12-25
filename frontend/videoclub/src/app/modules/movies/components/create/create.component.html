@@ -1,22 +1,25 @@
-<form>
+<form [formGroup]="movieForm" (ngSubmit)="create()">
   <div class="row">
     <div class="form-group col">
       <label for="movieTitleInput">Nombre</label>
-      <input type="text" class="form-control" id="movieTitleInput" placeholder="Título de la película">
+      <input type="text" class="form-control" id="movieTitleInput" placeholder="Título de la película" formControlName="title">
     </div>
     <div class="form-group col">
       <label for="directorNameInput">Director</label>
-      <input type="text" class="form-control" id="directorNameInput" placeholder="Nombre del director">
+      <input type="text" class="form-control" id="directorNameInput" placeholder="Nombre del director" formControlName="director">
     </div>
   </div>
   <div class="row">
     <div class="form-group col">
       <label for="movieReleaseDateInput">Fecha de Estreno</label>
-      <input type="text" class="form-control" id="movieReleaseDateInput" placeholder="Fecha de estreno en España">
+      <input type="text" class="form-control" id="movieReleaseDateInput" placeholder="Fecha de estreno en España" formControlName="releaseDate">
     </div>
     <div class="form-group col">
       <label for="moviePriceInput">Precio</label>
-      <input type="text" class="form-control" id="moviePriceInput" placeholder="PVP (En €)">
+      <input type="text" class="form-control" id="moviePriceInput" placeholder="PVP (En €)" formControlName="pvp">
     </div>
+  </div>
+  <div class="row justify-content-center">
+    <button type="submit" class="col-3 btn btn-success" [disabled]="movieForm.invalid">Create</button>
   </div>
 </form>

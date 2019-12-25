@@ -1,7 +1,3 @@
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action">Statistic #1</a>
-  <a href="#" class="list-group-item list-group-item-action">Statistic #2</a>
-  <a href="#" class="list-group-item list-group-item-action">Statistic #3</a>
-  <a href="#" class="list-group-item list-group-item-action">Statistic #4</a>
-  <a href="#" class="list-group-item list-group-item-action">Statistic #5</a>
+  <a href="#" class="list-group-item list-group-item-action" *ngFor="let statistic of (statisticsService.statistics$ | async)"></a>
 </div>

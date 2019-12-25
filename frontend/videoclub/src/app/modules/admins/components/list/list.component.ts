@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 
+import { AdminsService } from '../../services/admins.service';
+
 @Component({
   templateUrl: './list.component.html'
 })
-export class AdminsListComponent { }
+export class AdminsListComponent {
+  constructor(private adminsService: AdminsService) { }
+}

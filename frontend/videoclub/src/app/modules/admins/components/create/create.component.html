@@ -1,8 +1,11 @@
-<form>
+<form [formGroup]="adminForm" (ngSubmit)="create()">
   <div class="row">
     <div class="form-group col">
       <label for="adminNameInput">Nombre</label>
-      <input type="text" class="form-control" id="adminNameInput" placeholder="Nombre del administrador">
+      <input type="text" class="form-control" id="adminNameInput" placeholder="Nombre del administrador" formControlName="name">
     </div>
+  </div>
+  <div class="row justify-content-center">
+    <button type="submit" class="col-3 btn btn-success" [disabled]="adminForm.invalid">Create</button>
   </div>
 </form>

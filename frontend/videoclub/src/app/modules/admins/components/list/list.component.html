@@ -1,7 +1,3 @@
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action">Admin #1</a>
-  <a href="#" class="list-group-item list-group-item-action">Admin #2</a>
-  <a href="#" class="list-group-item list-group-item-action">Admin #3</a>
-  <a href="#" class="list-group-item list-group-item-action">Admin #4</a>
-  <a href="#" class="list-group-item list-group-item-action">Admin #5</a>
+  <a href="#" class="list-group-item list-group-item-action" *ngFor="let admin of (adminsService.admins$ | async)">{{ admin.name }}</a>
 </div>

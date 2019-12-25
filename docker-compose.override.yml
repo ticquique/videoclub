@@ -21,11 +21,11 @@ services:
     environment:
       - PRODUCTION=${PRODUCTION:-false}
       - APP_DOMAIN=${APP_DOMAIN:-localhost}
-  
+
   mongo:
     volumes:
       - ./db:/data/db
-  
+
   processor:
     command: npm run dev
     environment:

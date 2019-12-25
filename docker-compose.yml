@@ -11,7 +11,7 @@ services:
       - APP_DOMAIN=${APP_DOMAIN:-videoclub.webynav.com}
     ports:
       - ${FRONTEND_PORT:-9080}:80
-  
+
   mongo:
     image: mongo
     restart: always
