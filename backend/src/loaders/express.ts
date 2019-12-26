@@ -28,7 +28,7 @@ export class ExpressLoader implements ILoader<Express.Application> {
             expressSchema,
         );
         app.use(
-            '/',
+            '/api',
             useSofa({
                 schema
             }),

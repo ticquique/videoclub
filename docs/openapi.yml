@@ -3,7 +3,7 @@ info:
     title: 'Videoclub API'
     version: 3.0.0
 paths:
-    '/videoclub/{id}':
+    '/api/videoclub/{id}':
         get:
             operationId: videoclubQuery
             parameters:
@@ -20,7 +20,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Videoclub'
-    /videoclubs:
+    /api/videoclubs:
         get:
             operationId: videoclubsQuery
             parameters:
@@ -77,7 +77,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Videoclub'
-    '/statistic/{id}':
+    '/api/statistic/{id}':
         get:
             operationId: statisticQuery
             parameters:
@@ -94,7 +94,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/StatisticType'
-    /statistics:
+    /api/statistics:
         get:
             operationId: statisticsQuery
             parameters:
@@ -151,7 +151,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/StatisticType'
-    '/rent/{id}':
+    '/api/rent/{id}':
         get:
             operationId: rentQuery
             parameters:
@@ -168,7 +168,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/RentType'
-    /rents:
+    /api/rents:
         get:
             operationId: rentsQuery
             parameters:
@@ -225,7 +225,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/RentType'
-    '/member/{id}':
+    '/api/member/{id}':
         get:
             operationId: memberQuery
             parameters:
@@ -242,7 +242,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Member'
-    /members:
+    /api/members:
         get:
             operationId: membersQuery
             parameters:
@@ -299,7 +299,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Member'
-    '/film/{id}':
+    '/api/film/{id}':
         get:
             operationId: filmQuery
             parameters:
@@ -316,7 +316,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Film'
-    /films:
+    /api/films:
         get:
             operationId: filmsQuery
             parameters:
@@ -373,7 +373,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Film'
-    '/administrator/{id}':
+    '/api/administrator/{id}':
         get:
             operationId: administratorQuery
             parameters:
@@ -390,7 +390,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Administrator'
-    /administrators:
+    /api/administrators:
         get:
             operationId: administratorsQuery
             parameters:
@@ -447,7 +447,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Administrator'
-    /videoclub:
+    /api/videoclub:
         post:
             operationId: videoclubMutation
             requestBody:
@@ -469,7 +469,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Videoclub'
-    /statistic:
+    /api/statistic:
         post:
             operationId: statisticMutation
             requestBody:
@@ -491,7 +491,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/StatisticType'
-    /rent:
+    /api/rent:
         post:
             operationId: rentMutation
             requestBody:
@@ -513,7 +513,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/RentType'
-    /member:
+    /api/member:
         post:
             operationId: memberMutation
             requestBody:
@@ -535,7 +535,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Member'
-    /film:
+    /api/film:
         post:
             operationId: filmMutation
             requestBody:
@@ -557,7 +557,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Film'
-    /administrator:
+    /api/administrator:
         post:
             operationId: administratorMutation
             requestBody:
