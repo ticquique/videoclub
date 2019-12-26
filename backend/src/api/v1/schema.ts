@@ -11,34 +11,35 @@ import { MemberRouter } from "./member";
 import { FilmRouter } from "./film";
 import { AdministratorRouter } from "./administrator";
 
+const authService = new AuthMiddleware();
+const routers = [
+    new VideoclubRouter(),
+    new StatisticRouter(),
+    new RentRouter(),
+    new MemberRouter(),
+    new FilmRouter(),
+    new AdministratorRouter(),
+];
+
+const routes = routers.reduce((o,c) => ({...o, ...c.getRoutes()}), {})
+const protectedRoutes = routers.reduce((o,c) => [...o, ...c.getProtectedRoutes()], [])
+const mutations = routers.reduce((o,c) => ({...o, ...c.getMutations()}), {})
+
+export const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
+        name: 'Query',
+        fields: routes
+    }),
+    mutation: new GraphQLObjectType({
+        name: 'Mutation',
+        fields: mutations
+    })
+})
+
 export default graphqlHTTP(async (request) => {
-
     const env = await getEnv();
-    const authService = new AuthMiddleware();
-    const routers = [
-        new VideoclubRouter(),
-        new StatisticRouter(),
-        new RentRouter(),
-        new MemberRouter(),
-        new FilmRouter(),
-        new AdministratorRouter(),
-    ];
-
-    const routes = routers.reduce((o,c) => ({...o, ...c.getRoutes()}), {})
-    const protectedRoutes = routers.reduce((o,c) => [...o, ...c.getProtectedRoutes()], [])
-    const mutations = routers.reduce((o,c) => ({...o, ...c.getMutations()}), {})
-
     return {
-        schema: applyMiddleware(new GraphQLSchema({
-            query: new GraphQLObjectType({
-                name: 'Query',
-                fields: routes
-            }),
-            mutation: new GraphQLObjectType({
-                name: 'Mutation',
-                fields: mutations
-            })
-        }), authService.getMiddleware(...protectedRoutes)),
+        schema: applyMiddleware(schema, authService.getMiddleware(...protectedRoutes)),
         graphiql: !env.production,
         context: {
             user: await authService.tokenToUser(request.headers.authorization)

@@ -1,0 +1,915 @@
+openapi: 3.0.0
+info:
+    title: 'Videoclub API'
+    version: 3.0.0
+paths:
+    '/videoclub/{id}':
+        get:
+            operationId: videoclubQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Retrieve single videoclub by id'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Videoclub'
+    /videoclubs:
+        get:
+            operationId: videoclubsQuery
+            parameters:
+                -
+                    in: query
+                    name: page
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: perPage
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: resource
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+                -
+                    in: query
+                    name: sort
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: populate
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: lean
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: aggregate
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+            responses:
+                '200':
+                    description: 'Find videoclubs'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Videoclub'
+    '/statistic/{id}':
+        get:
+            operationId: statisticQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Retrieve single statistic by id'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/StatisticType'
+    /statistics:
+        get:
+            operationId: statisticsQuery
+            parameters:
+                -
+                    in: query
+                    name: page
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: perPage
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: resource
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+                -
+                    in: query
+                    name: sort
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: populate
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: lean
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: aggregate
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+            responses:
+                '200':
+                    description: 'Find statistics'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/StatisticType'
+    '/rent/{id}':
+        get:
+            operationId: rentQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Retrieve single rent by id'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RentType'
+    /rents:
+        get:
+            operationId: rentsQuery
+            parameters:
+                -
+                    in: query
+                    name: page
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: perPage
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: resource
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+                -
+                    in: query
+                    name: sort
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: populate
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: lean
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: aggregate
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+            responses:
+                '200':
+                    description: 'Find rents'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/RentType'
+    '/member/{id}':
+        get:
+            operationId: memberQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Retrieve single member by id'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Member'
+    /members:
+        get:
+            operationId: membersQuery
+            parameters:
+                -
+                    in: query
+                    name: page
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: perPage
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: resource
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+                -
+                    in: query
+                    name: sort
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: populate
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: lean
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: aggregate
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+            responses:
+                '200':
+                    description: 'Find members'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Member'
+    '/film/{id}':
+        get:
+            operationId: filmQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Retrieve single film by id'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Film'
+    /films:
+        get:
+            operationId: filmsQuery
+            parameters:
+                -
+                    in: query
+                    name: page
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: perPage
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: resource
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+                -
+                    in: query
+                    name: sort
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: populate
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: lean
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: aggregate
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+            responses:
+                '200':
+                    description: 'Find films'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Film'
+    '/administrator/{id}':
+        get:
+            operationId: administratorQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Retrieve single administrator by id'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Administrator'
+    /administrators:
+        get:
+            operationId: administratorsQuery
+            parameters:
+                -
+                    in: query
+                    name: page
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: perPage
+                    required: false
+                    schema:
+                        type: integer
+                        format: int32
+                -
+                    in: query
+                    name: resource
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+                -
+                    in: query
+                    name: sort
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: populate
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: lean
+                    required: false
+                    schema:
+                        type: string
+                -
+                    in: query
+                    name: aggregate
+                    required: false
+                    schema:
+                        $ref: '#/components/schemas/FindableScalar'
+            responses:
+                '200':
+                    description: 'Find administrators'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Administrator'
+    /videoclub:
+        post:
+            operationId: videoclubMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                element:
+                                    $ref: '#/components/schemas/VideoclubInput'
+                                populate:
+                                    $ref: '#/components/schemas/QueryPopulateType'
+                            required:
+                                - element
+            responses:
+                '200':
+                    description: 'Insert or update videoclub'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Videoclub'
+    /statistic:
+        post:
+            operationId: statisticMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                element:
+                                    $ref: '#/components/schemas/StatisticInputType'
+                                populate:
+                                    $ref: '#/components/schemas/QueryPopulateType'
+                            required:
+                                - element
+            responses:
+                '200':
+                    description: 'Insert or update videoclub'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/StatisticType'
+    /rent:
+        post:
+            operationId: rentMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                element:
+                                    $ref: '#/components/schemas/RentInputType'
+                                populate:
+                                    $ref: '#/components/schemas/QueryPopulateType'
+                            required:
+                                - element
+            responses:
+                '200':
+                    description: 'Insert or update videoclub'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RentType'
+    /member:
+        post:
+            operationId: memberMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                element:
+                                    $ref: '#/components/schemas/MemberInput'
+                                populate:
+                                    $ref: '#/components/schemas/QueryPopulateType'
+                            required:
+                                - element
+            responses:
+                '200':
+                    description: 'Insert or update videoclub'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Member'
+    /film:
+        post:
+            operationId: filmMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                element:
+                                    $ref: '#/components/schemas/FilmInput'
+                                populate:
+                                    $ref: '#/components/schemas/QueryPopulateType'
+                            required:
+                                - element
+            responses:
+                '200':
+                    description: 'Insert or update videoclub'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Film'
+    /administrator:
+        post:
+            operationId: administratorMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                element:
+                                    $ref: '#/components/schemas/AdministratorInput'
+                                populate:
+                                    $ref: '#/components/schemas/QueryPopulateType'
+                            required:
+                                - element
+            responses:
+                '200':
+                    description: 'Insert or update administrator'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Administrator'
+components:
+    schemas:
+        Query:
+            type: object
+            properties:
+                videoclub:
+                    $ref: '#/components/schemas/Videoclub'
+                    description: 'Retrieve single videoclub by id'
+                videoclubs:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Videoclub'
+                    description: 'Find videoclubs'
+                statistic:
+                    $ref: '#/components/schemas/StatisticType'
+                    description: 'Retrieve single statistic by id'
+                statistics:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/StatisticType'
+                    description: 'Find statistics'
+                rent:
+                    $ref: '#/components/schemas/RentType'
+                    description: 'Retrieve single rent by id'
+                rents:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/RentType'
+                    description: 'Find rents'
+                member:
+                    $ref: '#/components/schemas/Member'
+                    description: 'Retrieve single member by id'
+                members:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Member'
+                    description: 'Find members'
+                film:
+                    $ref: '#/components/schemas/Film'
+                    description: 'Retrieve single film by id'
+                films:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Film'
+                    description: 'Find films'
+                administrator:
+                    $ref: '#/components/schemas/Administrator'
+                    description: 'Retrieve single administrator by id'
+                administrators:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Administrator'
+                    description: 'Find administrators'
+        Videoclub:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                manager:
+                    type: string
+                city:
+                    type: string
+                street:
+                    type: string
+                postal_code:
+                    type: string
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        StatisticType:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                administrator:
+                    $ref: '#/components/schemas/Administrator'
+                member:
+                    $ref: '#/components/schemas/Member'
+                rents:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/RentType'
+                month:
+                    type: integer
+                    format: int32
+                amount:
+                    type: number
+                    format: float
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        Administrator:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                username:
+                    type: string
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        Member:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                name:
+                    type: string
+                age:
+                    type: integer
+                    format: int32
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        RentType:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                films:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Film'
+                member:
+                    $ref: '#/components/schemas/Member'
+                pickup_date:
+                    type: string
+                devolution_date:
+                    type: string
+                amount:
+                    type: integer
+                    format: int32
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        Film:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                videoclub_code:
+                    type: string
+                videoclub:
+                    $ref: '#/components/schemas/Videoclub'
+                name:
+                    type: string
+                director:
+                    type: string
+                released_at:
+                    type: string
+                rent_price:
+                    type: integer
+                    format: int32
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        Mutation:
+            type: object
+            properties:
+                videoclub:
+                    $ref: '#/components/schemas/Videoclub'
+                    description: 'Insert or update videoclub'
+                statistic:
+                    $ref: '#/components/schemas/StatisticType'
+                    description: 'Insert or update videoclub'
+                rent:
+                    $ref: '#/components/schemas/RentType'
+                    description: 'Insert or update videoclub'
+                member:
+                    $ref: '#/components/schemas/Member'
+                    description: 'Insert or update videoclub'
+                film:
+                    $ref: '#/components/schemas/Film'
+                    description: 'Insert or update videoclub'
+                administrator:
+                    $ref: '#/components/schemas/Administrator'
+                    description: 'Insert or update administrator'
+        VideoclubInput:
+            type: object
+            required:
+                - manager
+                - city
+                - street
+                - postal_code
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                manager:
+                    type: string
+                city:
+                    type: string
+                street:
+                    type: string
+                postal_code:
+                    type: string
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        QueryPopulateType:
+            type: object
+            properties:
+                path:
+                    type: string
+                select:
+                    type: string
+                match:
+                    type: string
+                model:
+                    type: string
+            description: 'Query to populate compressed params of the item'
+        StatisticInputType:
+            type: object
+            required:
+                - administrator
+                - member
+                - month
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                administrator:
+                    type: string
+                member:
+                    type: string
+                month:
+                    type: integer
+                    format: int32
+        RentInputType:
+            type: object
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                films:
+                    type: array
+                    items:
+                        type: string
+                member:
+                    type: string
+                pickup_date:
+                    type: string
+                devolution_date:
+                    type: string
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        MemberInput:
+            type: object
+            required:
+                - name
+                - age
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                name:
+                    type: string
+                age:
+                    type: integer
+                    format: int32
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        FilmInput:
+            type: object
+            required:
+                - videoclub_code
+                - name
+                - director
+                - released_at
+                - rent_price
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                videoclub_code:
+                    type: string
+                name:
+                    type: string
+                director:
+                    type: string
+                released_at:
+                    type: string
+                rent_price:
+                    type: integer
+                    format: int32
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        AdministratorInput:
+            type: object
+            required:
+                - username
+            properties:
+                _id:
+                    type: string
+                id:
+                    type: string
+                username:
+                    type: string
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        ID:
+            type: string

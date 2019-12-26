@@ -28,6 +28,7 @@
         "graphql-shield": "^7.0.2",
         "jsonwebtoken": "^8.5.1",
         "log4js": "^6.1.0",
-        "mongoose": "^5.7.12"
+        "mongoose": "^5.7.12",
+        "sofa-api": "^0.6.0"
     }
 }
