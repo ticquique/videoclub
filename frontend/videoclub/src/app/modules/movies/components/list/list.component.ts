@@ -6,7 +6,9 @@ import { MoviesService } from '../../services/movies.service';
   styleUrls: ['./list.css']
 })
 export class MoviesListComponent {
-  constructor(public moviesService: MoviesService) {  }
+  constructor(public moviesService: MoviesService) {
+    this.moviesService.get();
+  }
 
   rent(id: string) {
     this.moviesService.rent(id);
