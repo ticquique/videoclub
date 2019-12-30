@@ -17,7 +17,7 @@ const films = [
 ];
 
 const rents = [
-    { _id: "5df9502f9be06d0020ca5b2b", films: ["5df9502f9be06d0020ca5030"], member: "5df9502f9be06d0020ca5b28", pickup_date: "2002-12-09", devolution_date: "2012-12-09" }
+    { _id: "5df9502f9be06d0020ca5b2b", films: ["5df9502f9be06d0020ca5030"], member: "5df9502f9be06d0020ca5b28", pickup_date: "2002-12-09", devolution_date: "2013-12-09" }
 ];
 
 const statistics = [
