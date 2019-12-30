@@ -7,6 +7,7 @@ import * as log4js from 'log4js';
 import { httpLogger, initialLogger } from "../utils/logger";
 import expressSchema, { schema } from "../api/v1/schema";
 import { useSofa } from 'sofa-api';
+import { cors } from 'cors';
 /**
  * Loader for express application
  *
@@ -22,6 +23,7 @@ export class ExpressLoader implements ILoader<Express.Application> {
         const port = +env.express.port;
         const host = env.express.host;
 
+        app.use(cors())
         app.use(log4js.connectLogger(httpLogger, { level: 'debug' }));
         app.use(
             '/graphql',
