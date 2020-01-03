@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -13,13 +12,13 @@ export class RentsService {
   rents: BehaviorSubject<Array<Rent>>;
   rents$: Observable<Array<Rent>>;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.apiPath = ``;
     this.rents = new BehaviorSubject<Array<Rent>>([]);
     this.rents$ = this.rents.asObservable();
   }
 
   get(): Observable<any> {
-    return this.http.get(this.apiPath);
+    return this.gqlhttp.get(this.apiPath);
   }
 }

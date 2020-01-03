@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -13,7 +12,7 @@ export class StatisticsService {
   statistics: BehaviorSubject<Array<Statistic>>;
   statistics$: Observable<Array<Statistic>>;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.apiPath = ``;
     this.statistics = new BehaviorSubject<Array<Statistic>>([]);
     this.statistics$ = this.statistics.asObservable();

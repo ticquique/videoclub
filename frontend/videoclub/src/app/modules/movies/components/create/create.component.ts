@@ -11,14 +11,15 @@ export class MoviesCreationComponent {
 
   constructor(private moviesService: MoviesService) {
     this.movieForm = new FormGroup({
-      title: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
       director: new FormControl(null, [Validators.required]),
-      releaseDate: new FormControl(null, [Validators.required]),
-      pvp: new FormControl(null, [Validators.required]),
+      released_at: new FormControl(null, [Validators.required]),
+      rent_price: new FormControl(null, [Validators.required]),
+      videoclub_code: new FormControl(window.localStorage.getItem('id'))
     });
   }
 
   create() {
-    this.moviesService.create(this.movieForm.value);
+    this.moviesService.create(this.movieForm.value).subscribe();
   }
 }

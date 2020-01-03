@@ -7,7 +7,7 @@ import { MoviesService } from '../../services/movies.service';
 })
 export class MoviesListComponent {
   constructor(public moviesService: MoviesService) {
-    this.moviesService.get();
+    this.moviesService.get().subscribe();
   }
 
   rent(id: string) {

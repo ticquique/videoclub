@@ -6,5 +6,7 @@ import { AdminsService } from '../../services/admins.service';
   templateUrl: './list.component.html'
 })
 export class AdminsListComponent {
-  constructor(public adminsService: AdminsService) { }
+  constructor(public adminsService: AdminsService) {
+    this.adminsService.get().subscribe();
+  }
 }

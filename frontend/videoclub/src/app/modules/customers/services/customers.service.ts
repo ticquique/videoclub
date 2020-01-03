@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -13,7 +12,7 @@ export class CustomersService {
   customers: BehaviorSubject<Array<Customer>>;
   customers$: Observable<Array<Customer>>;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.apiPath = ``;
     this.customers =  new BehaviorSubject<Array<Customer>>([]);
     this.customers$ =  this.customers.asObservable();
@@ -21,6 +20,6 @@ export class CustomersService {
 
   create(body: Customer): Observable<any> {
     console.log('Creating customer');
-    return this.http.post(this.apiPath, body, null);
+    return this.gqlhttp.post(this.apiPath, body, null);
   }
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Movie } from '../../../models/movie';
 import { environment } from '../../../../environments/environment';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +14,23 @@ export class MoviesService {
   movies: BehaviorSubject<Array<Movie>>;
   movies$: Observable<Array<Movie>>;
 
-  constructor(private http: HttpClient) {
-    this.apiPath = `${environment.apiPath}/movies`;
+  constructor() {
+    this.apiPath = `${environment.apiPath}/film`;
     this.movies = new BehaviorSubject<Array<Movie>>([]);
     this.movies$ = this.movies.asObservable();
   }
 
-  get():Observable<any> {
-    return this.http.get(this.apiPath);
+  get():Observable<Array<Movie>> {
+    return this.gqlhttp.get(`${this.apiPath}`).pipe(tap((response: Array<Movie>) => this.movies.next(response)));
   }
 
   create(body): Observable<any> {
     console.log('Creating movie');
-    return this.http.post(this.apiPath, body, null);
+    return this.gqlhttp.post(this.apiPath, { query: body });
   }
 
   rent(id: string): Observable<any> {
     console.log('Renting movie');
-    return this.http.post(`${this.apiPath}/${id}`, null, null);
+    return this.gqlhttp.post(`${this.apiPath}/${id}`, null, null);
   }
 }

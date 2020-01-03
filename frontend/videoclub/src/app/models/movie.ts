@@ -1,7 +1,8 @@
 export interface Movie {
   id: string;
-  title: string;
+  name: string;
   director: string;
-  releaseDate: string;
-  pvp: number
+  released_at: string;
+  rent_price: number;
+  videoclub_code: string;
 }

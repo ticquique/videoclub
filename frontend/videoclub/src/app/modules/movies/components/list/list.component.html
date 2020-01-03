@@ -1,6 +1,6 @@
 <div class="col-10 list-group list-group-flush">
   <li class="list-group-item" *ngFor="let movie of (moviesService.movies$ | async)">
-    <span class="col">{{ movie.title }}</span>
+    <span class="col">{{ movie.name }}</span>
     <button class="btn btn-success rent-btn" (click)="rent(movie.id)">Alquilar</button>
   </li>
 </div>
