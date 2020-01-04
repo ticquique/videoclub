@@ -3,17 +3,18 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Rent } from '../../../models/rent';
+import { GqlhttpService, Endpoints } from 'src/app/shared/services/gqlhttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentsService {
-  apiPath: string;
+  apiPath: Endpoints;
   rents: BehaviorSubject<Array<Rent>>;
   rents$: Observable<Array<Rent>>;
 
-  constructor() {
-    this.apiPath = ``;
+  constructor(private gqlhttp: GqlhttpService) {
+    this.apiPath = 'rent';
     this.rents = new BehaviorSubject<Array<Rent>>([]);
     this.rents$ = this.rents.asObservable();
   }

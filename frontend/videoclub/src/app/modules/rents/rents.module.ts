@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { RentsRoutingModule } from './rents.routing.module';
 import { RentsListComponent } from './components/list/list.component';
 import { RentsPageComponent } from './components/page/page.component';
 import { RentsService } from './services/rents.service';
-import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    HttpClientModule,
-    RentsRoutingModule
+    RentsRoutingModule,
+    SharedModule
   ],
   declarations: [
     RentsPageComponent,

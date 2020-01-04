@@ -8,13 +8,12 @@ import { CustomersPageComponent } from './components/page/page.component';
 import { CustomersListComponent } from './components/list/list.component';
 import { CustomersCreationComponent } from './components/create/create.component';
 import { CustomersService } from './services/customers.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
     CustomersRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    SharedModule
   ],
   declarations: [
     CustomersPageComponent,

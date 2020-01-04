@@ -8,13 +8,12 @@ import { AdminsPageComponent } from './components/page/page.component';
 import { AdminsListComponent } from './components/list/list.component';
 import { AdminsCreationComponent } from './components/create/create.component';
 import { AdminsService } from './services/admins.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AdminsRoutingModule
+    AdminsRoutingModule,
+    SharedModule
   ],
   declarations: [
     AdminsPageComponent,

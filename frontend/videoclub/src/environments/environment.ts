@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPath: `http://localhost:9080/api`
+  apiPath: `http://localhost:9080/graphql?`
 };
 
 /*

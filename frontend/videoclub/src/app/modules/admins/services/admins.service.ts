@@ -5,17 +5,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Admin } from '../../../models/admin';
 import { environment } from '../../../../environments/environment';
 import { tap } from 'rxjs/operators';
+import { GqlhttpService, Endpoints } from 'src/app/shared/services/gqlhttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminsService {
-  apiPath: string;
+  apiPath: Endpoints;
   admins: BehaviorSubject<Array<Admin>>;
   admins$: Observable<Array<Admin>>;
 
-  constructor() {
-    this.apiPath = `${environment.apiPath}/administrator`;
+  constructor(private gqlhttp: GqlhttpService) {
+    this.apiPath = 'administrator';
     this.admins = new BehaviorSubject<Array<Admin>>([]);
     this.admins$ = this.admins.asObservable();
   }
@@ -26,6 +27,6 @@ export class AdminsService {
 
   create(body: Admin): Observable<any> {
     console.log('Admin creation');
-    return this.gqlhttp.post(this.apiPath, body, null);
+    return this.gqlhttp.post(this.apiPath, body);
   }
 }

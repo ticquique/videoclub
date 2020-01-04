@@ -8,13 +8,13 @@ import { MoviesCreationComponent } from './components/create/create.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MoviesService } from './services/movies.service';
+import { GqlhttpService } from 'src/app/shared/services/gqlhttp.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MoviesRoutingModule
+    MoviesRoutingModule,
+    SharedModule
   ],
   declarations: [
     MoviesPageComponent,
