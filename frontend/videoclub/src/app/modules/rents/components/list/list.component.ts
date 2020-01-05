@@ -5,5 +5,7 @@ import { RentsService } from '../../services/rents.service';
   templateUrl: './list.component.html'
 })
 export class RentsListComponent {
-  constructor(public rentsService: RentsService) { }
+  constructor(public rentsService: RentsService) {
+    this.rentsService.get().subscribe();
+  }
 }

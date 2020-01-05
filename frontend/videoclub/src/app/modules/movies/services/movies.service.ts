@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Movie } from '../../../models/movie';
-import { environment } from '../../../../environments/environment';
 import { tap } from 'rxjs/operators';
 import { GqlhttpService, Endpoints } from 'src/app/shared/services/gqlhttp.service';
 
@@ -28,10 +27,5 @@ export class MoviesService {
   create(body): Observable<any> {
     console.log('Creating movie');
     return this.gqlhttp.post(this.apiPath, body);
-  }
-
-  rent(id: string) {
-    console.log('Renting movie');
-    // return this.gqlhttp.post(`${this.apiPath}/${id}`, null);
   }
 }

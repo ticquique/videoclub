@@ -1,3 +1,6 @@
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action" *ngFor="let rent of (rentsService.rents$ | async)">{{ rent.movie }}</a>
+<div class="col-10 list-group list-group-flush">
+  <li class="list-group-item" *ngFor="let rent of (rentsService.rents$ | async)">
+    <span class="col">{{ rent.films[0].name }}</span>
+    <span class="col">{{ rent.member.name }}</span>
+  </li>
 </div>

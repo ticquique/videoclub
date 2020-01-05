@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Rent } from '../../../models/rent';
 import { GqlhttpService, Endpoints } from 'src/app/shared/services/gqlhttp.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,11 @@ export class RentsService {
   }
 
   get(): Observable<any> {
-    return this.gqlhttp.get(this.apiPath);
+    return this.gqlhttp.get(this.apiPath).pipe(tap((response: Array<Rent>) => this.rents.next(response)));
+  }
+
+  rent(id: string) {
+    console.log('Renting movie');
+    // return this.gqlhttp.post(this.apiPath, id);
   }
 }

@@ -17,7 +17,7 @@ const mapping = {
   administrator: "{id, _id, username, created_at, updated_at}",
   member: "{_id, id, name, age, created_at, updated_at}",
   film: "{_id, id, name, director, released_at, rent_price, videoclub_code, videoclub {_id, id, manager, city, street, postal_code, created_at, updated_at}, created_at, updated_at}",
-  rent: "{_id, id, films, member, pickup_date, devolution_date, amount, created_at, updated_at}",
+  rent: "{_id, id, films { name }, member { name }, pickup_date, devolution_date, amount, created_at, updated_at}",
   videoclub: "{_id, id, manager, city, street, postal_code, created_at, updated_at}",
   statistic: "{_id, id, administrator {id, _id, username, created_at, updated_at}, member {_id, id, name, age, created_at, updated_at}, rents {_id, id, films, member, pickup_date, devolution_date, amount, created_at, updated_at}, month, amount, created_at, updated_at}"
 }

@@ -1,6 +1,29 @@
 <div class="col-10 list-group list-group-flush">
   <li class="list-group-item" *ngFor="let movie of (moviesService.movies$ | async)">
     <span class="col">{{ movie.name }}</span>
-    <button class="btn btn-success rent-btn" (click)="rent(movie.id)">Alquilar</button>
+    <button class="btn btn-success rent-btn" type="button" data-toggle="modal" data-target="#rentModal" (click)="selectMovieToRent(movie.id)">Alquilar</button>
   </li>
+</div>
+<div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="rentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rentModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+          <li class="list-group-item" *ngFor="let customer of (customersService.customers$ | async)">
+            <span class="col">{{ customer.name }}</span>
+            <button class="btn btn-success rent-btn" type="button">Seleccionar</button>
+          </li>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="rent('1')">Alquilar</button>
+      </div>
+    </div>
+  </div>
 </div>
