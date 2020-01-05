@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Customer } from '../../../models/customer';
 import { GqlhttpService, Endpoints } from 'src/app/shared/services/gqlhttp.service';
+import { tap } from 'rxjs/operators';
+import { Movie } from '../../../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,10 @@ export class CustomersService {
     this.apiPath = 'member';
     this.customers =  new BehaviorSubject<Array<Customer>>([]);
     this.customers$ =  this.customers.asObservable();
+  }
+
+  get(): Observable<Array<Customer>> {
+    return this.gqlhttp.get(this.apiPath).pipe(tap((response: Array<Customer>) => this.customers.next(response)));
   }
 
   create(body: Customer): Observable<any> {

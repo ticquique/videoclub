@@ -17,6 +17,7 @@ export class CustomersCreationComponent {
   }
 
   create() {
-    this.customersService.create(this.customerForm.value);
+    this.customerForm.controls.age.setValue(parseInt(this.customerForm.controls.age.value, 10));
+    this.customersService.create(this.customerForm.value).subscribe();
   }
 }

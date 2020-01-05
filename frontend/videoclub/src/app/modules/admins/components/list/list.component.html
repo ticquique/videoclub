@@ -1,3 +1,5 @@
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action" *ngFor="let admin of (adminsService.admins$ | async)">{{ admin.username }}</a>
+<div class="col-10 list-group list-group-flush">
+  <li class="list-group-item" *ngFor="let admin of (adminsService.admins$ | async)">
+    <span class="col">{{ admin.username }}</span>
+  </li>
 </div>

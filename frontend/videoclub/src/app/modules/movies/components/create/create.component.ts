@@ -14,12 +14,13 @@ export class MoviesCreationComponent {
       name: new FormControl(null, [Validators.required]),
       director: new FormControl(null, [Validators.required]),
       released_at: new FormControl(null, [Validators.required]),
-      rent_price: new FormControl(null, [Validators.required]),
+      rent_price: new FormControl(0, [Validators.required]),
       videoclub_code: new FormControl(window.localStorage.getItem('id'))
     });
   }
 
   create() {
+    this.movieForm.controls.rent_price.setValue(parseInt(this.movieForm.controls.rent_price.value, 10));
     this.moviesService.create(this.movieForm.value).subscribe();
   }
 }

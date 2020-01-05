@@ -11,11 +11,11 @@ export class AdminsCreationComponent {
 
   constructor(private adminsService: AdminsService) {
     this.adminForm = new FormGroup({
-      name: new FormControl('', [Validators.required])
+      username: new FormControl('', [Validators.required])
     });
   }
 
   create(): void {
-    this.adminsService.create(this.adminForm.value);
+    this.adminsService.create(this.adminForm.value).subscribe(() => this.adminForm.reset());
   }
 }
