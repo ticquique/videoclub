@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MoviesService } from '../../services/movies.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { VideoclubsService } from '../../../videoclubs/services/videoclubs.service';
 
 @Component({
   templateUrl: './create.component.html'
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class MoviesCreationComponent {
   movieForm: FormGroup;
 
-  constructor(private moviesService: MoviesService) {
+  constructor(private moviesService: MoviesService, public videoclubsService: VideoclubsService) {
     this.movieForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       director: new FormControl(null, [Validators.required]),
@@ -17,10 +18,11 @@ export class MoviesCreationComponent {
       rent_price: new FormControl(0, [Validators.required]),
       videoclub_code: new FormControl(window.localStorage.getItem('id'))
     });
+    this.videoclubsService.get().subscribe();
   }
 
   create() {
     this.movieForm.controls.rent_price.setValue(parseInt(this.movieForm.controls.rent_price.value, 10));
-    this.moviesService.create(this.movieForm.value).subscribe();
+    this.moviesService.create(this.movieForm.value).subscribe(() => this.movieForm.reset());
   }
 }

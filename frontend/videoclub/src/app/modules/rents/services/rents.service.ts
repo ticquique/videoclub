@@ -24,8 +24,8 @@ export class RentsService {
     return this.gqlhttp.get(this.apiPath).pipe(tap((response: Array<Rent>) => this.rents.next(response)));
   }
 
-  rent(id: string) {
+  rent(body) {
     console.log('Renting movie');
-    // return this.gqlhttp.post(this.apiPath, id);
+    return this.gqlhttp.post(this.apiPath, body).pipe(tap(() => this.rents.next(this.rents.getValue().concat(body))));
   }
 }
