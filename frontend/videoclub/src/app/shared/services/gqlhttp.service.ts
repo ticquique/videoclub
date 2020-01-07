@@ -43,7 +43,7 @@ export class GqlhttpService {
   private genGetString(type: Endpoints, params?: any) {
     return {
       query: `query {
-      ${type}s ${JSON.stringify(params).replace(/\"([^(\")"]+)\":/g, "$1:")} ${mapping[type]}
+      ${type}s ${params ? JSON.stringify(params).replace(/\"([^(\")"]+)\":/g, "$1:") : '' } ${mapping[type]}
     }`}
   }
 

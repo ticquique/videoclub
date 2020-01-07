@@ -1,3 +1,5 @@
 <div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action" *ngFor="let statistic of (statisticsService.statistics$ | async)"></a>
+  <a href="#" class="list-group-item list-group-item-action" *ngFor="let statistic of (statistics$ | async)">
+    {{statistic | json}}
+  </a>
 </div>
