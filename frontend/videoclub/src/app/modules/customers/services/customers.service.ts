@@ -22,7 +22,7 @@ export class CustomersService {
   }
 
   get(): Observable<Array<Customer>> {
-    return this.gqlhttp.get(this.apiPath).pipe(tap((response: Array<Customer>) => this.customers.next(response)));
+    return this.gqlhttp.get(this.apiPath, {}).pipe(tap((response: Array<Customer>) => this.customers.next(response)));
   }
 
   create(body: Customer): Observable<any> {

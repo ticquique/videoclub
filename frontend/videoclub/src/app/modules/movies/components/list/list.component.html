@@ -27,7 +27,7 @@
         <h5>Peliculas Seleccionadas</h5>
         <div class="list-group list-group-flush">
           <li class="list-group-item" *ngFor="let movie of selectedMovies">
-            <span class="col">{{ movie.name }}</span>
+            <a [routerLink]="[movie.id]"><span class="col">{{ movie.name }}</span></a>
           </li>
         </div>
         <br>

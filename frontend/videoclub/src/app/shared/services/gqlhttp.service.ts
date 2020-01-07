@@ -43,7 +43,7 @@ export class GqlhttpService {
   private genGetString(type: Endpoints, params?: any) {
     return {
       query: `query {
-      ${type}s ${JSON.stringify(params).replace(/\"([^(\")"]+)\":/g, "$1:")} ${mapping[type]}
+      ${type}s ${ params ? JSON.stringify(params).replace(/\"([^(\")"]+)\":/g, "$1:") : ''} ${mapping[type]}
     }`}
   }
 
@@ -61,7 +61,7 @@ export class GqlhttpService {
   }
 
   get<T>(type: Endpoints, params?: any): Observable<T[]> {
-    return this.http.post<any>(environment.apiPath, this.genGetString(type, params), { headers: this.headers }).pipe(
+    return this.http.post<any>(environment.apiPath, this.genGetString(type), { headers: this.headers }).pipe(
       map(v => v.data[`${type}s`])
     );
   }

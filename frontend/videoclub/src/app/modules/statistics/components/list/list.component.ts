@@ -8,20 +8,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './list.component.html'
 })
 export class StatisticsListComponent {
-  statisticGetter: FormGroup;
+  selectedCustomer: string;
   
   constructor(public statisticsService: StatisticsService, public customersService: CustomersService) {
-    this.statisticGetter = new FormGroup({
-      member: new FormControl('', [Validators.required]),
-      month: new FormControl('', [Validators.required])
-    });
-    
+    this.selectedCustomer = '';
     this.customersService.get().subscribe();
   }
   
   getCustomerStatistics() {
-    
-    this.statisticsService.getByCustomer({resource: {member: event.target.value }}).subscribe();
+    this.statisticsService.getByCustomer(this.selectedCustomer).subscribe();
+  }
+  
+  selectCustomer(event) {
+    this.selectedCustomer = event.target.value;
   }
   
   getMonth(month) {
