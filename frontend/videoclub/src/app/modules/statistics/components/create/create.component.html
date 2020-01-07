@@ -1,0 +1,38 @@
+<form (ngSubmit)="generate()" [formGroup]="statisticForm">
+  <div class="row">
+    <div class="col-4 form-group">
+      <label for="aministratorSelector">Administrador</label>
+      <select id="aministratorSelector" class="form-control" formControlName="administrator">
+        <option value="{{ administrator.id }}" *ngFor="let administrator of (adminsService.admins$ | async)">{{ administrator.username }}</option>
+      </select>
+    </div>
+    <div class="col-4 form-group">
+      <label for="customerSelector">Socio</label>
+      <select id="customerSelector" class="form-control" formControlName="member">
+        <option value="{{ customer.id }}" *ngFor="let customer of (customersService.customers$ | async)">{{ customer.name }}</option>
+      </select>
+    </div>
+    <div class="col-4 form-group">
+      <label for="monthSelector">Mes</label>
+      <select id="monthSelector" class="form-control" formControlName="month">
+        <option value="1">Enero</option>
+        <option value="2">Febrero</option>
+        <option value="3">Marzo</option>
+        <option value="4">Abril</option>
+        <option value="5">Mayo</option>
+        <option value="6">Junio</option>
+        <option value="7">Julio</option>
+        <option value="8">Agosto</option>
+        <option value="9">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <button class="btn btn-primary" type="submit">Generar</button>
+    </div>
+  </div>
+</form>

@@ -5,6 +5,7 @@ import { StatisticsPageComponent } from './components/page/page.component';
 import { StatisticsListComponent } from './components/list/list.component';
 import { StatisticsService } from './services/statistics.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { StatisticsCreationComponent } from './components/create/create.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   declarations: [
     StatisticsPageComponent,
-    StatisticsListComponent
+    StatisticsListComponent,
+    StatisticsCreationComponent
   ],
   providers: [StatisticsService]
 })

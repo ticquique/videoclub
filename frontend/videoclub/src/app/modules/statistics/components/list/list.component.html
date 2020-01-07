@@ -1,3 +1,52 @@
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action" *ngFor="let statistic of (statisticsService.statistics$ | async)"></a>
+<form (ngSubmit)="getCustomerStatistics()" [formGroup]="statisticGetter">
+  <div class="row">
+    <div class="col-4">
+      <label for="customerSelector">Cliente</label>
+      <select id="customerSelector" class="form-control" formControlName="member">
+        <option value="{{ customer.id }}" *ngFor="let customer of (customersService.customers$ | async)">{{ customer.name }}</option>
+      </select>
+    </div>
+    <div class="col-4 form-group">
+      <label for="monthSelector">Mes</label>
+      <select id="monthSelector" class="form-control" formControlName="month">
+        <option value="1">Enero</option>
+        <option value="2">Febrero</option>
+        <option value="3">Marzo</option>
+        <option value="4">Abril</option>
+        <option value="5">Mayo</option>
+        <option value="6">Junio</option>
+        <option value="7">Julio</option>
+        <option value="8">Agosto</option>
+        <option value="9">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+      </select>
+    </div>
+  </div>
+</form>
+<div class="list-group list-group-flush">
+  <li class="list-group-item list-group-item-action" *ngFor="let statistic of (statisticsService.statistics$ | async)">
+    <p>{{ getMonth(statistic.month) }}</p>
+    <div class="list-group list-group-flush">
+      <ng-container *ngIf="statistic.rents.length else noRents">
+        <div class="row">
+          <div class="col-2">
+            <span>{{ statistic.amount }} €</span>
+          </div>
+          <div class="col-3">
+            <span>{{ statistic.created_at }}</span>
+          </div>
+          <div class="col-7">
+            <div class="list-group list-group-flush" *ngFor="let rent of statistic.rents">
+              <p *ngFor="let film of rent.films">{{ film.name }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noRents>
+        <span><i>No rents</i></span>
+      </ng-template>
+    </div>
+  </li>
 </div>

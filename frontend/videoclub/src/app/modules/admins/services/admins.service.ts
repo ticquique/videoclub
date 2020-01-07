@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { Admin } from '../../../models/admin';
-import { environment } from '../../../../environments/environment';
-import { tap } from 'rxjs/operators';
 import { GqlhttpService, Endpoints } from 'src/app/shared/services/gqlhttp.service';
 
 @Injectable({

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { StatisticsPageComponent } from './components/page/page.component';
 import { StatisticsListComponent } from './components/list/list.component';
+import { StatisticsCreationComponent } from './components/create/create.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: '',
         component: StatisticsListComponent
+      },
+      {
+        path: 'create',
+        component: StatisticsCreationComponent
       }
     ]
   }

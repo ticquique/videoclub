@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { RentsService } from '../../services/rents.service';
 import { Rent } from '../../../../models/rent';
+import { Customer } from '../../../../models/customer';
+import { CustomersService } from '../../../customers/services/customers.service';
 
 @Component({
   templateUrl: './list.component.html'
@@ -10,9 +12,15 @@ import { Rent } from '../../../../models/rent';
 export class RentsListComponent {
   modifyForm: FormGroup;
   selectedRent: Rent;
+  members: Array<Customer>;
   
-  constructor(public rentsService: RentsService) {
+  constructor(public rentsService: RentsService, public customersService: CustomersService) {
     this.rentsService.get().subscribe();
+    this.customersService.get().subscribe((response) => {
+      if (response) {
+        this.members = response;
+      }
+    });
     this.modifyForm = new FormGroup({
       devolution_date: new FormControl('', [Validators.required])
     });
@@ -25,12 +33,12 @@ export class RentsListComponent {
   }
   
   modifyRent() {
-    const modifiedRent = {
-      pickup_date: this.selectedRent.pickup_date,
+   const modifiedRent = {
+      _id: this.selectedRent.id,
       devolution_date: this.modifyForm.controls.devolution_date.value,
-      member: this.selectedRent.member
     };
+   
     
-    this.rentsService.modify(modifiedRent).subscribe();
+    this.rentsService.modify(modifiedRent).subscribe(() => window.location.reload());
   }
 }

@@ -65,12 +65,16 @@ export class MoviesListComponent {
 
   rent() {
     const rentDate = new Date();
+    const movies = [];
+    this.selectedMovies.map((movie) => movies.push(movie.id));
+    
     const rent = {
-      films: this.selectedMovies,
+      films: movies,
       member: this.selectedCustomer.id,
-      devolution_date: this.rentForm.controls.date.toString(),
+      devolution_date: this.rentForm.controls.date.value,
       pickup_date: rentDate.toString()
     };
-    this.rentsService.rent(rent).subscribe(() => window.location.reload());
+    
+    this.rentsService.rent(rent).subscribe();
   }
 }

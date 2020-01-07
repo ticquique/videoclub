@@ -3,6 +3,7 @@
     <button class="btn btn-warning" data-toggle="modal" data-target="#modifyModal" (click)="selectRent(rent)">Modificar</button>
     <span class="col">{{ rent.films[0].name }}</span>
     <span class="col">{{ rent.member.name }}</span>
+    <span class="col">{{ rent.devolution_date | date: 'dd/MM/yy' }}</span>
   </li>
 </div>
 <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabel" aria-hidden="true">
