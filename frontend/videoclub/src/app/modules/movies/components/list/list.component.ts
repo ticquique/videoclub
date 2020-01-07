@@ -24,7 +24,8 @@ export class MoviesListComponent {
     this.selectedMovies = [];
     this.total = 0;
     this.rentForm = new FormGroup({
-      date: new FormControl('', [Validators.required])
+      date: new FormControl('', [Validators.required]),
+      member: new FormControl('', [Validators.required])
     });
     this.moviesService.get().subscribe();
     this.customersService.get().subscribe();
@@ -57,6 +58,7 @@ export class MoviesListComponent {
   
   selectCustomer(customer) {
     this.selectedCustomer = customer;
+    this.rentForm.controls.member.setValue(this.selectedCustomer.id)
   }
   
   deselectCustomer() {
@@ -70,7 +72,7 @@ export class MoviesListComponent {
     
     const rent = {
       films: movies,
-      member: this.selectedCustomer.id,
+      member: this.rentForm.controls.member.value,
       devolution_date: this.rentForm.controls.date.value,
       pickup_date: rentDate.toString()
     };
