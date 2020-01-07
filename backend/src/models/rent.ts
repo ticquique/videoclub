@@ -55,6 +55,7 @@ RentSchema.pre('save', async function (this: Document & IRent, next) {
         if (this.films?.length === 0) throw new Error('At least 1 film must be rented')
         const films = await Film.find({ '_id': { $in: this.films } });
         if (films.length < this.films.length) throw new Error('Invalid film id provided')
+        this.films = films;
         this.amount = films.reduce((old, current) => old + current.rent_price, 0);
         next();
     } catch (e) { next(e); }

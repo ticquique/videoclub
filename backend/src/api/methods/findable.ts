@@ -44,8 +44,7 @@ export class Findable<T> {
   find = async (_, params: FindOptions<T>) => {
     let { page = 1, perPage = 20, resource, sort, populate, lean, aggregate } = params;
     resource = aggregate ? resource ? { ...resource, $expr: aggregate } : { $expr: aggregate } : resource;
-    let query = resource ? this.model.find(resource) : this.model.find({});
-
+    let query = resource ? this.model.find(typeof resource === 'string' ? JSON.parse(resource) : resource) : this.model.find({});
     query = perPage ? query.limit(perPage) : query;
     query = page && perPage ? query.skip((page - 1) * perPage) : query;
     query = sort ? query.sort(sort) : query;
