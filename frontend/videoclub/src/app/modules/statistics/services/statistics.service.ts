@@ -25,10 +25,10 @@ export class StatisticsService {
   }
   
   getByCustomer(id) {
-    return this.gqlhttp.getOne(this.apiPath, id).pipe(tap((response: any) => this.statistics.next(response)));
+    return this.gqlhttp.get(this.apiPath, {resources: {member: id}}).pipe(tap((response: any) => this.statistics.next(response)));
   }
 
   create(body) {
-    return this.gqlhttp.post(this.apiPath, body).pipe(tap((response: any) => this.statistics.next(response.rents)));
+    return this.gqlhttp.post(this.apiPath, body).pipe(tap((response: any) => this.statistics.next(response)));
   }
 }

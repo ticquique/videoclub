@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VideoclubsService } from '../../../videoclubs/services/videoclubs.service';
 
 @Component({
-  templateUrl: './create.component.html'
+  templateUrl: './details.component.html'
 })
 export class MovieDetailsComponent {
   constructor(private moviesService: MoviesService, public videoclubsService: VideoclubsService) {
