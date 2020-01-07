@@ -59,7 +59,7 @@
           </div>
           <div class="row form-group">
             <div class="col-6">
-              <button class="btn btn-success" type="button" (click)="rent()">Alquilar</button>
+              <button class="btn btn-success" type="button" (click)="rent()" [disabled]="rentForm.invalid">Alquilar</button>
             </div>
             <div class="col-6">
               <button class="btn btn-danger" type="button">Cancelar</button>
