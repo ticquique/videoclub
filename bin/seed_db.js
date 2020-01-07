@@ -13,11 +13,12 @@ const videoclubs = [
 ];
 
 const films = [
-    { _id: "5df9502f9be06d0020ca5030", videoclub_code: "5df9502f9be06d0020ca5b29", name: "Lo que se fue", director: "Juan car", released_at: "2002-12-09", rent_price: 23 }
+    { _id: "5df9502f9be06d0020ca5030", videoclub_code: "5df9502f9be06d0020ca5b29", name: "Lo que se fue", director: "Juan car", released_at: "2002-12-09", rent_price: 23 },
+    { _id: "5df9502f9be06d0020ca5032", videoclub_code: "5df9502f9be06d0020ca5b29", name: "Lo que no se fue", director: "Juan car", released_at: "2002-12-09", rent_price: 23 }
 ];
 
 const rents = [
-    { _id: "5df9502f9be06d0020ca5b2b", films: ["5df9502f9be06d0020ca5030"], member: "5df9502f9be06d0020ca5b28", pickup_date: "2002-12-09", devolution_date: "2013-12-09" }
+    { _id: "5df9502f9be06d0020ca5b2b", films: ["5df9502f9be06d0020ca5030", "5df9502f9be06d0020ca5032"], member: "5df9502f9be06d0020ca5b28", pickup_date: "2002-12-09", devolution_date: "2014-12-09" }
 ];
 
 const statistics = [

@@ -17,16 +17,16 @@ export const StatisticType = new GraphQLObjectType({
     fields: {
         _id: { type: GraphQLString },
         id: { type: GraphQLString },
-        administrator: { 
+        administrator: {
             resolve: async (parent, _) => (await administratorResolver.find(null, { page: 1, perPage: 1, resource: { _id: parent.administrator } }))?.[0] ?? null,
             type: AdministratorType
         },
         member: {
             resolve: async (parent, _) => (await memberResolver.find(null, { page: 1, perPage: 1, resource: { _id: parent.member } }))?.[0] ?? null,
-            type: MemberType 
+            type: MemberType
         },
-        rents: { 
-            resolve: async (parent, _) => await rentResolver.find(null, { page: 1, perPage: 1, resource: { _id: {$in: parent.rents} } }),
+        rents: {
+            resolve: async (parent, _) => await rentResolver.find(null, { page: 1, perPage: 1, resource: { _id: { $in: parent.rents } } }),
             type: GraphQLList(RentType)
         },
         month: { type: GraphQLInt },
