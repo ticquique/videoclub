@@ -1,1 +1,4 @@
-<h4>{{ movie.name }}</h4>
+<h4>{{ (moviesService.movie$ | async)?.name }}</h4>
+<div class="row">
+    <div class="col-4"><span>{{ (moviesService.movie$ | async)?.videoclub.street }}</span></div>
+</div>

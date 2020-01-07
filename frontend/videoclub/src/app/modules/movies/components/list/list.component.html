@@ -1,6 +1,6 @@
 <div class="col-10 list-group list-group-flush">
   <li class="list-group-item" *ngFor="let movie of (moviesService.movies$ | async)">
-    <span class="col">{{ movie.name }} <i style="font-size: 12px">- {{ movie.videoclub.street }} -</i></span>
+    <span class="col"><a [routerLink]="[movie.id]">{{ movie.name }}</a> <i style="font-size: 12px">- {{ movie.videoclub.street }} -</i></span>
     <ng-container *ngIf="isMovieRented(movie.name) else rent">
       <span><i>Movie Rented</i></span>
     </ng-container>
@@ -27,7 +27,7 @@
         <h5>Peliculas Seleccionadas</h5>
         <div class="list-group list-group-flush">
           <li class="list-group-item" *ngFor="let movie of selectedMovies">
-            <a [routerLink]="[movie.id]"><span class="col">{{ movie.name }}</span></a>
+            <span class="col">{{ movie.name }}</span>
           </li>
         </div>
         <br>

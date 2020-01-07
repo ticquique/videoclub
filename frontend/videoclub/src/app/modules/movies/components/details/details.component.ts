@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
 import { MoviesService } from '../../services/movies.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { VideoclubsService } from '../../../videoclubs/services/videoclubs.service';
+
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './create.component.html'
+  templateUrl: './details.component.html'
 })
 export class MovieDetailsComponent {
-  constructor(private moviesService: MoviesService, public videoclubsService: VideoclubsService) {
-  
+  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute) {
+    this.moviesService.getById(this.activatedRoute.snapshot.params.id).subscribe();
   }
 }
