@@ -13,13 +13,20 @@ import { map } from 'rxjs/operators';
 export type Endpoints = 'administrator' | 'member' | 'film' | 'rent' | 'videoclub' | 'statistic';
 type Interfaces = Admin | Customer | Movie | Rent | Statistic | Videoclub;
 
+const administrator = "{id, _id, username, created_at, updated_at}";
+const member = "{_id, id, name, age, created_at, updated_at}";
+const videoclub = "{_id, id, manager, city, street, postal_code, created_at, updated_at}";
+const film = `{_id, id, name, director, released_at, rent_price, videoclub_code, videoclub ${videoclub}, created_at, updated_at}`;
+const rent = `{_id, id, films ${film}, member ${member}, pickup_date, devolution_date, amount, created_at, updated_at}`;
+const statistic = `{_id, id, administrator ${administrator}, member ${member}, rents ${rent}, month, amount, created_at, updated_at}`;
+
 const mapping = {
-  administrator: "{id, _id, username, created_at, updated_at}",
-  member: "{_id, id, name, age, created_at, updated_at}",
-  film: "{_id, id, name, director, released_at, rent_price, videoclub_code, videoclub {_id, id, manager, city, street, postal_code, created_at, updated_at}, created_at, updated_at}",
-  rent: "{_id, id, films { name }, member { name }, pickup_date, devolution_date, amount, created_at, updated_at}",
-  videoclub: "{_id, id, manager, city, street, postal_code, created_at, updated_at}",
-  statistic: "{_id, id, administrator {id, _id, username, created_at, updated_at}, member {_id, id, name, age, created_at, updated_at}, rents {_id, id, films, member, pickup_date, devolution_date, amount, created_at, updated_at}, month, amount, created_at, updated_at}"
+  administrator,
+  member,
+  film,
+  rent,
+  videoclub,
+  statistic
 }
 
 @Injectable()
@@ -33,9 +40,10 @@ export class GqlhttpService {
     return JSON.stringify(element).replace(/\"([^(\")"]+)\":/g, "$1:")
   }
 
-  private genGetString(type: Endpoints) {
-    return {query: `query {
-      ${type}s ${mapping[type]}
+  private genGetString(type: Endpoints, params?: any) {
+    return {
+      query: `query {
+      ${type}s ${JSON.stringify(params).replace(/\"([^(\")"]+)\":/g, "$1:")} ${mapping[type]}
     }`}
   }
 
@@ -46,13 +54,14 @@ export class GqlhttpService {
   }
 
   private genPostString(type: Endpoints, body: Interfaces) {
-    return {query: `mutation {
+    return {
+      query: `mutation {
       ${type}(element: ${JSON.stringify(body).replace(/\"([^(\")"]+)\":/g, "$1:")}) ${mapping[type]}
     }`}
   }
 
-  get<T>(type: Endpoints): Observable<T[]> {
-    return this.http.post<any>(environment.apiPath, this.genGetString(type), { headers: this.headers }).pipe(
+  get<T>(type: Endpoints, params?: any): Observable<T[]> {
+    return this.http.post<any>(environment.apiPath, this.genGetString(type, params), { headers: this.headers }).pipe(
       map(v => v.data[`${type}s`])
     );
   }
