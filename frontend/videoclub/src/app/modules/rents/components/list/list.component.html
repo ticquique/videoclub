@@ -1,6 +1,30 @@
 <div class="col-10 list-group list-group-flush">
   <li class="list-group-item" *ngFor="let rent of (rentsService.rents$ | async)">
+    <button class="btn btn-warning" data-toggle="modal" data-target="#modifyModal" (click)="selectRent(rent)">Modificar</button>
     <span class="col">{{ rent.films[0].name }}</span>
     <span class="col">{{ rent.member.name }}</span>
   </li>
+</div>
+<div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="modifyForm" (ngSubmit)="modifyRent()">
+          <div class="row">
+            <div class="col-6">
+              <input type="text" class="form-control" formControlName="devolution_date" placeholder="dd/mm/AAAA">
+            </div>
+            <div class="col-4">
+              <button class="btn btn-success" type="submit">Modificar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

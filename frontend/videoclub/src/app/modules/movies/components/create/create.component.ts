@@ -16,7 +16,7 @@ export class MoviesCreationComponent {
       director: new FormControl(null, [Validators.required]),
       released_at: new FormControl(null, [Validators.required]),
       rent_price: new FormControl(0, [Validators.required]),
-      videoclub_code: new FormControl(window.localStorage.getItem('id'))
+      videoclub_code: new FormControl('', [Validators.required])
     });
     this.videoclubsService.get().subscribe();
   }
