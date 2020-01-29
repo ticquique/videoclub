@@ -10,6 +10,7 @@
             <div class="col-4 form-group">
               <label for="aministratorSelector">Administrador</label>
               <select id="aministratorSelector" class="form-control" formControlName="administrator">
+                <option value=""></option>
                 <option value="{{ administrator.id }}" *ngFor="let administrator of (adminsService.admins$ | async)">
                   {{ administrator.username }}</option>
               </select>
@@ -17,6 +18,7 @@
             <div class="col-4 form-group">
               <label for="customerSelector">Socio</label>
               <select id="customerSelector" class="form-control" formControlName="member">
+                <option value=""></option>
                 <option value="{{ customer.id }}" *ngFor="let customer of (customersService.customers$ | async)">
                   {{ customer.name }}</option>
               </select>
@@ -24,6 +26,7 @@
             <div class="col-4 form-group">
               <label for="monthSelector">Mes</label>
               <select id="monthSelector" class="form-control" formControlName="month">
+                <option value=""></option>
                 <option value="1">Enero</option>
                 <option value="2">Febrero</option>
                 <option value="3">Marzo</option>

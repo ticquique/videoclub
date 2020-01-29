@@ -32,6 +32,7 @@
             <div class="form-group col-sm-6">
               <label for="movieVideoclubSelect">Videoclub</label>
               <select class="form-control" id="movieVideoclubSelect" formControlName="videoclub_code">
+                <option value=""></option>
                 <option value="{{ videoclub.id }}" *ngFor="let videoclub of (videoclubsService.videoclubs$ | async)">
                   {{ videoclub.street }}</option>
               </select>

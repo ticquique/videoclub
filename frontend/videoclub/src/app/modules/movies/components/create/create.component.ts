@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MoviesService } from '../../services/movies.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   templateUrl: './create.component.html'
 })
-export class MoviesCreationComponent {
+export class MoviesCreationComponent implements OnInit {
   movieForm: FormGroup;
 
   constructor(private moviesService: MoviesService, public videoclubsService: VideoclubsService, public router: Router) {
@@ -17,14 +17,19 @@ export class MoviesCreationComponent {
       director: new FormControl(null, [Validators.required]),
       released_at: new FormControl(null, [Validators.required]),
       rent_price: new FormControl(0, [Validators.required]),
-      videoclub_code: new FormControl('', [Validators.required])
+      videoclub_code: new FormControl(null, [Validators.required])
     });
+  }
+
+  ngOnInit(): void {
     this.videoclubsService.get().subscribe();
   }
 
-
   create() {
     this.movieForm.controls.rent_price.setValue(parseInt(this.movieForm.controls.rent_price.value, 10));
-    this.moviesService.create(this.movieForm.value).subscribe(() => this.router.navigate(['/movies']));
+    this.moviesService.create(this.movieForm.value).subscribe(() => {
+      this.movieForm.reset();
+      this.router.navigate(['/movies'])
+    });
   }
 }

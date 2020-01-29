@@ -15,13 +15,11 @@ export class StatisticsListComponent {
     this.customersService.get().subscribe();
   }
   
-  getCustomerStatistics() {
+  getCustomerStatistics(event) {
+    this.selectedCustomer = event.target.value;
     this.statisticsService.getByCustomer(this.selectedCustomer).subscribe();
   }
   
-  selectCustomer(event) {
-    this.selectedCustomer = event.target.value;
-  }
   
   getMonth(month) {
     switch (month) {

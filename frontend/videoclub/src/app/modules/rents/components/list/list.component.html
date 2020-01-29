@@ -36,10 +36,17 @@
             <button class="titem col-4 col-sm-2 btn btn-warning " data-toggle="modal" data-target="#modifyModal"
               (click)="selectRent(rent)">Modificar</button>
             <div id="collapsed-{{rent._id}}" class="collapse col-12 bg-light">
+              <div class="row" style="margin: 15px -15px;">
+                <div class="titem col-4 col-sm-2">Nombre</div>
+                <div class="titem col-4 col-sm-2">Director</div>
+                <div class="titem col-4 col-sm-2">Lanzamiento</div>
+                <div class="titem col-4 col-sm-2">Precio</div>
+                <div class="titem col-4 col-sm-2">Videoclub</div>
+              </div>
               <div class="row" *ngFor="let film of rent.films">
                 <div class="titem col-4 col-sm-2">{{film.name}}</div>
                 <div class="titem col-4 col-sm-2">{{film.director}}</div>
-                <div class="titem col-4 col-sm-2">{{film.released_at}}</div>
+                <div class="titem col-4 col-sm-2">{{film.released_at | date: 'dd/MM/yy'}}</div>
                 <div class="titem col-4 col-sm-2">{{film.rent_price}}$</div>
                 <div class="titem col-4 col-sm-2">{{film.videoclub.street}}</div>
               </div>

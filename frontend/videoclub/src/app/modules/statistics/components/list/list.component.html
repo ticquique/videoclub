@@ -1,37 +1,48 @@
-<div class="row">
-  <div class="col-4">
-    <label for="customerSelector">Cliente</label>
-    <select id="customerSelector" class="form-control" (change)="selectCustomer($event)">
-      <option value=""></option>
-      <option value="{{ customer.id }}" *ngFor="let customer of (customersService.customers$ | async)">{{ customer.name }}</option>
-    </select>
-  </div>
-  <div class="col-3">
-    <button class="btn btn-primary" (click)="getCustomerStatistics()" style="position: absolute; bottom: 0;">Obtener</button>
-  </div>
-</div>
-<div class="list-group list-group-flush">
-  <li class="list-group-item list-group-item-action" *ngFor="let statistic of (statisticsService.statistics$ | async)">
-    <p>{{ getMonth(statistic.month) }}</p>
-    <div class="list-group list-group-flush">
-      <ng-container *ngIf="statistic.rents.length else noRents">
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="card card-outline-secondary">
+      <div class="card-header">
         <div class="row">
-          <div class="col-2">
-            <span>{{ statistic.amount }} €</span>
+          <h3 class="mb-0 col-6">Estadísticas de cliente</h3>
+          <select id="customerSelector" class="form-control col-6" (change)="getCustomerStatistics($event)">
+            <option value=""></option>
+            <option value="{{ customer.id }}" *ngFor="let customer of (customersService.customers$ | async)">
+              {{ customer.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <div class="col-12 list-group list-group-flush" *ngIf="statisticsService.statistics$ | async as statistics">
+          <div class="row" style="margin-bottom: 15px;">
+            <div class="titem col-4 col-sm-2">Mes</div>
+            <div class="titem col-4 col-sm-2">Total</div>
+            <div class="titem col-4 col-sm-2">Fecha de creación</div>
           </div>
-          <div class="col-3">
-            <span>{{ statistic.created_at }}</span>
-          </div>
-          <div class="col-7">
-            <div class="list-group list-group-flush" *ngFor="let rent of statistic.rents">
-              <p *ngFor="let film of rent.films">{{ film.name }}</p>
-            </div>  
+
+          <div class="row shadow p-3" *ngFor="let statistic of statistics">
+            <div class="titem col-3 col-sm-2">{{getMonth(statistic.month)}}</div>
+            <div class="titem col-3 col-sm-2">{{statistic.amount}}</div>
+            <div class="titem col-3 col-sm-2">{{statistic.created_at | date: 'dd/MM/yy'}}</div>
+            <div class="titem col-3 col-sm-2"><a href="#" role="button" data-toggle="collapse"
+                [attr.data-target]="'#collapsed-'+statistic._id">Alquileres</a></div>
+            <div id="collapsed-{{statistic._id}}" class="collapse col-12 bg-light">
+              <div class="row" style="margin: 15px -15px;">
+                <div class="titem col-3 col-sm-3">Emision</div>
+                <div class="titem col-3 col-sm-3">Devolucion</div>
+                <div class="titem col-3 col-sm-3">Cantidad</div>
+                <div class="titem col-3 col-sm-3">nº Peliculas</div>
+              </div>
+              <div class="row" *ngFor="let rent of statistic.rents">
+                <div class="titem col-3 col-sm-3">{{rent.pickup_date | date: 'dd/MM/yy'}}</div>
+                <div class="titem col-3 col-sm-3">{{rent.devolution_date | date: 'dd/MM/yy'}}</div>
+                <div class="titem col-3 col-sm-3">{{rent.amount}}$</div>
+                <div class="titem col-3 col-sm-3">{{rent.films.length}}</div>
+              </div>
+            </div>
           </div>
         </div>
-      </ng-container>
-      <ng-template #noRents>
-        <span><i>No rents</i></span>
-      </ng-template>
+      </div>
     </div>
-  </li>
+  </div>
 </div>
