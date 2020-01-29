@@ -1,5 +1,22 @@
-<div class="col-10 list-group list-group-flush">
-  <li class="list-group-item" *ngFor="let admin of (adminsService.admins$ | async)">
-    <span class="col">{{ admin.username }}</span>
-  </li>
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="card card-outline-secondary">
+      <div class="card-header">
+        <h3 class="mb-0">Lista de administradores</h3>
+      </div>
+      <div class="card-body">
+        <div class="col-12 list-group list-group-flush">
+          <div class="row" style="margin-bottom: 15px;">
+            <div class="titem col-6">nombre</div>
+            <div class="titem col-6">id</div>
+          </div>
+
+          <div class="row shadow p-3" *ngFor="let admin of (adminsService.admins$ | async)">
+            <div class="titem col-6">{{admin.username}}</div>
+            <div class="titem col-6">{{admin._id}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

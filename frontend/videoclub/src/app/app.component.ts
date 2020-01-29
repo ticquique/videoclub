@@ -8,7 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'videoclub';
 
-  constructor() {
-    window.localStorage.setItem('id', '5df9502f9be06d0020ca5b29');
-  }
+  constructor() { }
 }

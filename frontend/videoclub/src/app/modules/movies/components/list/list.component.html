@@ -1,71 +1,88 @@
-<div class="col-10 list-group list-group-flush">
-  <li class="list-group-item" *ngFor="let movie of (moviesService.movies$ | async)">
-    <span class="col"><a [routerLink]="[movie.id]">{{ movie.name }}</a> <i style="font-size: 12px">- {{ movie.videoclub.street }} -</i></span>
-    <ng-container *ngIf="isMovieRented(movie.name) else rent">
-      <span><i>Movie Rented</i></span>
-    </ng-container>
-    <ng-template #rent>
-      <ng-container *ngIf="isMovieSelected(movie.id) else selector">
-        <button class="btn btn-info action-btn" type="button" (click)="deselectMovieToRent(movie)">Borrar</button>
-      </ng-container>
-      <ng-template #selector>
-        <button class="btn btn-success action-btn" type="button" (click)="selectMovieToRent(movie)">Seleccionar</button>
-      </ng-template>
-    </ng-template>
-  </li>
-  <button class="btn btn-primary" data-toggle="modal" data-target="#rentModal" [disabled]="!selectedMovies.length">Alquilar</button>
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="card card-outline-secondary">
+      <div class="card-header">
+        <h3 class="mb-0">Lista de películas</h3>
+      </div>
+      <div class="card-body">
+        <div class="list-group list-group-flush">
+          <li class="list-group-item film-item" *ngFor="let movie of (moviesService.movies$ | async)">
+            <span><a [routerLink]="[movie.id]">{{ movie.name }}</a><span style="font-size: 12px; margin-left: 10px;">
+                {{ movie.videoclub.street }}</span></span>
+            <ng-container *ngIf="isMovieRented(rents, movie.id) else rent">
+              <span class="action-btn">Movie Rented</span>
+            </ng-container>
+            <ng-template #rent>
+              <ng-container *ngIf="isMovieSelected(movie.id) else selector">
+                <button class="btn btn-info action-btn" type="button"
+                  (click)="deselectMovieToRent(movie)">Borrar</button>
+              </ng-container>
+              <ng-template #selector>
+                <button class="btn btn-success action-btn" type="button"
+                  (click)="selectMovieToRent(movie)">Seleccionar</button>
+              </ng-template>
+            </ng-template>
+          </li>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#rentModal"
+          [disabled]="!selectedMovies.length">Alquilar</button>
+      </div>
+    </div>
+  </div>
 </div>
+
 <div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="rentModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <h5 class="modal-title">Alquilar películas</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h5>Peliculas Seleccionadas</h5>
-        <div class="list-group list-group-flush">
+        <h5 data-toggle="collapse" data-target="#collapseMovies" style="cursor: pointer;margin: 10px 0;">Peliculas
+          Seleccionadas</h5>
+        <ul class="list-group collapse show" id="collapseMovies">
           <li class="list-group-item" *ngFor="let movie of selectedMovies">
-            <span class="col">{{ movie.name }}</span>
+            <span>{{ movie.name }}</span>
           </li>
-        </div>
+        </ul>
         <br>
-        <h5>Socios</h5>
-        <div class="list-group list-group-flush">
+        <h5 style="cursor: pointer;margin: 10px 0;">Socios</h5>
+        <ul class="list-group">
           <ng-container *ngIf="selectedCustomer else noCustomer">
             <li class="list-group-item">
-              <span class="col">{{ selectedCustomer.name }}</span>
+              <span>{{ selectedCustomer.name }}</span>
               <button class="btn btn-danger action-btn" type="button" (click)="deselectCustomer()">Cancelar</button>
             </li>
           </ng-container>
           <ng-template #noCustomer>
             <li class="list-group-item" *ngFor="let customer of (customersService.customers$ | async)">
-              <span class="col">{{ customer.name }}</span>
-              <button class="btn btn-success action-btn" type="button" (click)="selectCustomer(customer)">Seleccionar</button>
+              <span>{{ customer.name }}</span>
+              <button class="btn btn-success action-btn" type="button"
+                (click)="selectCustomer(customer)">Seleccionar</button>
             </li>
           </ng-template>
-        </div>
+        </ul>
         <br>
         <h5>Devolucion</h5>
         <form [formGroup]="rentForm">
           <div class="row form-group">
             <div class="col-5">
-              <input type="text" class="form-control" formControlName="date" placeholder="dd/mm/YYYY">
+              <input type="date" class="form-control" formControlName="date" placeholder="dd/mm/YYYY">
             </div>
             <div class="col-4">
               <span class="alert alert-warning" style="padding: 5px; position: absolute;">Total: {{ total }} €</span>
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col-6">
-              <button class="btn btn-success" type="button" (click)="rent()" [disabled]="rentForm.invalid">Alquilar</button>
-            </div>
-            <div class="col-6">
-              <button class="btn btn-danger" type="button">Cancelar</button>
-            </div>
-          </div>
         </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" type="button" (click)="rent()" [disabled]="rentForm.invalid">Alquilar</button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" aria-label="Close">Cancelar</button>
       </div>
     </div>
   </div>

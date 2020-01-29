@@ -9,7 +9,7 @@ const members = [
 ];
 
 const videoclubs = [
-    { _id: "5df9502f9be06d0020ca5b29", manager: "manage", city: "valencia", street: "Calle del Oeste", postal_code: "46001" }
+    { _id: "5df9502f9be06d0020ca5b29", manager: "Antonio Bayona", city: "Valencia", street: "Avenida del oeste", postal_code: "46001" }
 ];
 
 const films = [
@@ -26,11 +26,7 @@ const statistics = [
 ];
 
 const query = `mutation {
-    ${administrators.reduce((old, current, i) => old + `administrator${i}: administrator(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
-    ${members.reduce((old, current, i) => old + `member${i}: member(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
     ${videoclubs.reduce((old, current, i) => old + `videoclub${i}: videoclub(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
-    ${films.reduce((old, current, i) => old + `film${i}: film(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
-    ${rents.reduce((old, current, i) => old + `rent${i}: rent(element: ${JSON.stringify(current).replace(/\"([^(\")"]+)\":/g, "$1:")}) {_id},`, '')}
 }`;
 
 const data = JSON.stringify({

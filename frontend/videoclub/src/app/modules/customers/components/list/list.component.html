@@ -1,3 +1,29 @@
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action" *ngFor="let customer of (customersService.customers$ | async)">{{ customer.name }}</a>
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="card card-outline-secondary">
+      <div class="card-header">
+        <h3 class="mb-0">Lista de socios</h3>
+      </div>
+      <div class="card-body">
+        <div class="list-group">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">id</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let customer of (customersService.customers$ | async)">
+                <th scope="row">{{customer.name}}</th>
+                <td>{{customer.age}}</td>
+                <td>{{ customer._id }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

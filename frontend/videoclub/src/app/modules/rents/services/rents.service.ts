@@ -26,11 +26,13 @@ export class RentsService {
 
   rent(body) {
     console.log('Renting movie');
-    return this.gqlhttp.post(this.apiPath, body).pipe(tap(() => this.rents.next(this.rents.getValue().concat(body))));
+    return this.gqlhttp.post(this.apiPath, body).pipe(tap((val: Rent) => this.rents.next(this.rents.getValue().concat(val))));
   }
-  
+
   modify(body) {
     console.log('Modifyng renting');
-    return this.gqlhttp.post(this.apiPath, body);
+    return this.gqlhttp.post(this.apiPath, body).pipe(tap((val: Rent) => this.rents.next(
+      this.rents.getValue().map(inval => val && inval._id === val._id ? val : inval)
+    )));
   }
 }

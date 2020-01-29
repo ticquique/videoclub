@@ -1,4 +1,13 @@
-<h4>{{ (moviesService.movie$ | async)?.name }}</h4>
-<div class="row">
-    <div class="col-4"><span>{{ (moviesService.movie$ | async)?.videoclub.street }}</span></div>
+<div class="card" *ngIf="(moviesService.movie$ | async) as movie">
+    <div class="card-header">
+        <h4 class="card-title">{{ movie.name }}</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><span class="text-info">id: </span>{{movie.id}}</li>
+        <li class="list-group-item"><span class="text-info">name: </span>{{movie.name}}</li>
+        <li class="list-group-item"><span class="text-info">director: </span>{{movie.director}}</li>
+        <li class="list-group-item"><span class="text-info">released_at: </span>{{movie.released_at}}</li>
+        <li class="list-group-item"><span class="text-info">rent_price: </span>{{movie.rent_price}}</li>
+        <li class="list-group-item"><span class="text-info">videoclub: </span>{{movie.videoclub.street}}</li>
+    </ul>
 </div>
