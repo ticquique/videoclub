@@ -24,11 +24,11 @@ export class MoviesService {
     this.movie$ = this.movie.asObservable();
   }
 
-  get():Observable<Array<Movie>> {
+  get(): Observable<Array<Movie>> {
     console.log('Retrieving movies');
     return this.gqlhttp.get(this.apiPath).pipe(tap((response: Array<Movie>) => this.movies.next(response)));
   }
-  
+
   getById(id) {
     console.log('Retrieving movie');
     return this.gqlhttp.getOne(this.apiPath, id).pipe(tap((response: Movie) => this.movie.next(response)));

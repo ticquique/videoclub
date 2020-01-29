@@ -1,31 +1,47 @@
-<form [formGroup]="movieForm" (ngSubmit)="create()">
-  <div class="row">
-    <div class="form-group col">
-      <label for="movieTitleInput">Nombre</label>
-      <input type="text" class="form-control" id="movieTitleInput" placeholder="Título de la película" formControlName="name">
-    </div>
-    <div class="form-group col">
-      <label for="directorNameInput">Director</label>
-      <input type="text" class="form-control" id="directorNameInput" placeholder="Nombre del director" formControlName="director">
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <div class="card card-outline-secondary">
+      <div class="card-header">
+        <h3 class="mb-0">Crear película</h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="movieForm" (ngSubmit)="create()">
+          <div class="row">
+            <div class="form-group col">
+              <label for="movieTitleInput">Nombre</label>
+              <input type="text" class="form-control" id="movieTitleInput" placeholder="Título de la película"
+                formControlName="name">
+            </div>
+            <div class="form-group col">
+              <label for="directorNameInput">Director</label>
+              <input type="text" class="form-control" id="directorNameInput" placeholder="Nombre del director"
+                formControlName="director">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="movieReleaseDateInput">Fecha de Estreno</label>
+              <input type="date" class="form-control" id="movieReleaseDateInput" placeholder="dd/mm/aaaa"
+                formControlName="released_at">
+            </div>
+            <div class="form-group col-sm-2">
+              <label for="moviePriceInput">Precio</label>
+              <input type="number" class="form-control" id="moviePriceInput" placeholder="PVP (En €)"
+                formControlName="rent_price">
+            </div>
+            <div class="form-group col-sm-6">
+              <label for="movieVideoclubSelect">Videoclub</label>
+              <select class="form-control" id="movieVideoclubSelect" formControlName="videoclub_code">
+                <option value="{{ videoclub.id }}" *ngFor="let videoclub of (videoclubsService.videoclubs$ | async)">
+                  {{ videoclub.street }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="submit" class="col-3 btn btn-success" [disabled]="movieForm.invalid">Crear</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="form-group col">
-      <label for="movieReleaseDateInput">Fecha de Estreno</label>
-      <input type="text" class="form-control" id="movieReleaseDateInput" placeholder="dd/mm/aaaa" formControlName="released_at">
-    </div>
-    <div class="form-group col">
-      <label for="moviePriceInput">Precio</label>
-      <input type="text" class="form-control" id="moviePriceInput" placeholder="PVP (En €)" formControlName="rent_price">
-    </div>
-    <div class="form-group col">
-      <label for="movieVideoclubSelect">Videoclub</label>
-      <select class="form-control" id="movieVideoclubSelect" formControlName="videoclub_code">
-        <option value="{{ videoclub.id }}" *ngFor="let videoclub of (videoclubsService.videoclubs$ | async)">{{ videoclub.street }}</option>
-      </select>
-    </div>
-  </div>
-  <div class="row justify-content-center">
-    <button type="submit" class="col-3 btn btn-success" [disabled]="movieForm.invalid">Crear</button>
-  </div>
-</form>
+</div>

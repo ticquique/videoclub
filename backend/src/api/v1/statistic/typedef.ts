@@ -26,7 +26,7 @@ export const StatisticType = new GraphQLObjectType({
             type: MemberType
         },
         rents: {
-            resolve: async (parent, _) => await rentResolver.find(null, { page: 1, perPage: 1, resource: { _id: { $in: parent.rents } } }),
+            resolve: async (parent, _) => await rentResolver.find(null, { resource: { _id: { $in: parent.rents } } }),
             type: GraphQLList(RentType)
         },
         month: { type: GraphQLInt },

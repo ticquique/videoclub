@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { VideoclubsService } from '../../../videoclubs/services/videoclubs.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './create.component.html'
@@ -10,7 +11,7 @@ import { VideoclubsService } from '../../../videoclubs/services/videoclubs.servi
 export class MoviesCreationComponent {
   movieForm: FormGroup;
 
-  constructor(private moviesService: MoviesService, public videoclubsService: VideoclubsService) {
+  constructor(private moviesService: MoviesService, public videoclubsService: VideoclubsService, public router: Router) {
     this.movieForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       director: new FormControl(null, [Validators.required]),
@@ -21,8 +22,9 @@ export class MoviesCreationComponent {
     this.videoclubsService.get().subscribe();
   }
 
+
   create() {
     this.movieForm.controls.rent_price.setValue(parseInt(this.movieForm.controls.rent_price.value, 10));
-    this.moviesService.create(this.movieForm.value).subscribe(() => this.movieForm.reset());
+    this.moviesService.create(this.movieForm.value).subscribe(() => this.router.navigate(['/movies']));
   }
 }

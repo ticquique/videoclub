@@ -1,11 +1,23 @@
-<form [formGroup]="adminForm" (ngSubmit)="create()">
-  <div class="row">
-    <div class="form-group col">
-      <label for="adminNameInput">Nombre</label>
-      <input type="text" class="form-control" id="adminNameInput" placeholder="Nombre del administrador" formControlName="username">
-    </div>
+<div class="row justify-content-center">
+  <div class="col-md-12">
+    <form [formGroup]="adminForm" (ngSubmit)="create()">
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">Crear administrador</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col">
+              <label for="adminNameInput">Nombre</label>
+              <input type="text" class="form-control" id="adminNameInput" placeholder="Nombre del administrador"
+                formControlName="username">
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="col-3 btn btn-success" [disabled]="adminForm.invalid">Create</button>
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="row justify-content-center">
-    <button type="submit" class="col-3 btn btn-success" [disabled]="adminForm.invalid">Create</button>
-  </div>
-</form>
+</div>

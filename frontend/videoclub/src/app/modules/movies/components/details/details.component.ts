@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './details.component.html'
 })
 export class MovieDetailsComponent {
-  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute) {
+  constructor(public moviesService: MoviesService, private activatedRoute: ActivatedRoute) {
     this.moviesService.getById(this.activatedRoute.snapshot.params.id).subscribe();
   }
 }

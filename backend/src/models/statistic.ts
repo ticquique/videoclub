@@ -58,6 +58,7 @@ StatisticSchema.pre('save', async function (this: Document & IStatistic, next) {
         ]);
         this.rents = rents;
         this.amount = rents.reduce((old, current) => old + current.amount, 0);
+        console.log(this.amount);
         next();
     } catch (e) { next(e); }
 });

@@ -1,15 +1,17 @@
 <div class="row">
-  <div class="col-2">
-    <ul class="nav flex-column">
+  <div class="col-md-2">
+    <ul class="nav flex-md-column nav-pills">
       <li class="nav-item">
-        <a class="nav-link active" routerLinkActive="active" [routerLink]="['/statistics']">Estadísticas</a>
+        <a class="nav-link active" routerLinkActive="active" [routerLink]="['/statistics']" [routerLinkActiveOptions]="{exact:
+          true}">Estadísticas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" routerLinkActive="active" [routerLink]="['create']">Crear</a>
+        <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}" [routerLink]="['create']">Crear</a>
       </li>
     </ul>
   </div>
-  <div class="col-10">
+  <div class="col-md-10">
     <router-outlet></router-outlet>
   </div>
 </div>
